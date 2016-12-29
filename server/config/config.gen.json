@@ -1,0 +1,29 @@
+{
+  "mongo": {
+    "autoIndex": true,
+    "options": {
+      "server": {
+        "autoreconnect": true
+      }
+    }
+  },
+  "basepaths": {
+    "img": "assets/images"
+  },
+  "cors": {
+    "exposedHeaders": [
+      "X-Total-Count"
+    ]
+  },
+  "jwt": {
+    "auth": {
+      "expiresIn": "1h",
+      "issuer": "s_m_wed:auth",
+      "secret": ">PQo6b3^9gMH8MJcw%Pv:H9D"
+    }
+  },
+  "validationConfig": {
+    "usernameMinLength": 4,
+    "usernameMaxLength": 15
+  }
+}

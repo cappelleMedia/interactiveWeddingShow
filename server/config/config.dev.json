@@ -1,0 +1,17 @@
+{
+  "mongo": {
+    "uri": "mongodb://localhost/s_m_wed"
+  },
+  "basepaths": {
+    "app_url": "localhost:3000"
+  },
+  "smtpConfig": {
+    "port": "1025",
+    "debug": true
+  },
+  "cors": {
+    "origins": [
+      "localhost:3000$"
+    ]
+  }
+}
