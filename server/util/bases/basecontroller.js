@@ -49,26 +49,9 @@ class BaseController {
             });
     }
 
-    updateObj(id, updated, callback) {
-        let self = this;
-        this.getOne(id, function (err, found) {
-            if (!isNaN(found)) {
-                callback(err, found);
-            } else {
-                Object.assign(found, updated);
-                self.addObj(found, function (err, result) {
-                    let errors = null;
-                    if (err) {
-                        if (err.name === "ValidationError") {
-                            errors = self.handleValidationErrors(err);
-                        }
-                    }
-                    callback(err, result, errors);
-                });
-            }
-        });
+    delete(jwt, id, callback) {
+        //TODO check jwt == admin then delete
     }
-
 
     handleValidationErrors(err) {
         console.log('should be overridden by subclass');
