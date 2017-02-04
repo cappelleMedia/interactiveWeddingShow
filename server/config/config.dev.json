@@ -3,7 +3,8 @@
     "uri": "mongodb://localhost/s_m_wed"
   },
   "basepaths": {
-    "app_url": "localhost:3000"
+    "app_url": "localhost:3000",
+    "root": "C:/Users/Jens/Documents/MAIN DOCS/Major Projects/WEDDING_S_AND_M/interactiveWeddingShow"
   },
   "smtpConfig": {
     "port": "1025",
@@ -11,7 +12,8 @@
   },
   "cors": {
     "origins": [
-      "localhost:3000$"
+      "localhost:3000$",
+      "localhost:$"
     ]
   }
 }

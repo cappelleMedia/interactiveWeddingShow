@@ -1,0 +1,33 @@
+#main-menu {
+}
+
+#main-menu .link-btn{
+    margin: 15px;
+    height: 50px;
+    line-height:50px;
+    font-size: 28px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color:  rgb(206,0,88);
+    border: solid 2px rgb(206,0,88);
+    cursor: pointer;
+    font-weight:bold;
+}
+
+#main-menu .link-btn:hover{
+    background-color: rgb(206,0,88);
+    color: #fff;
+}
+
+@media all and (max-width: 550px) {
+    #main-menu .link-btn{
+        font-size: 24px;
+    }
+}
+
+@media all and (max-width: 430px) {
+    #main-menu .link-btn{
+        font-size: 22px;
+    }
+}

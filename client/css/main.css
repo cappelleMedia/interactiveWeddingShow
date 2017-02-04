@@ -1,26 +1,45 @@
-/*blue = rgb(176,222,231) || #b0dee7*/
+/*
+color schemes
+redish: rgb(206,0,88)
+pink: rgb(232,156,174)
+
+blue = rgb(176,222,231) || #b0dee7*/
+
 /*
     GENERAL CLASSES
 */
 .text-center {
     text-align: center;
 }
-
-header {
-    background-color: #dca570;
-    height: 10%;
+.radish-text {
+    color: rgb(206,0,88);
+}
+.pink-text {
+    color:rgb(232,156,174);
+}
+.heading {
+    margin-bottom: 15px;
+}
+.pretty-text {
+    font-family: 'Great Vibes', cursive;
+}
+/*
+    STYLES
+*/
+#main-content h1 {
+    margin-top:60px;
+    font-size: 22px;
+    /*margin-top: 60px;*/
 }
 
-header h1 {
-    color: #000;
+@media all and (max-width: 550px) {
+    #main-content {
+        /*margin-top: 50px;*/
+    }
 }
 
-#image-slider {
-    height: 400px;
-    background-color: #70a7dc;
-}
-
-#gb-slider {
-    height: 400px;
-    background-color: #70dca5;
+@media all and (max-width: 430px) {
+    #main-content {
+        /*margin-top: 20px;*/
+    }
 }

@@ -1,3 +1,9 @@
+#config
+server/config
+
+#assets
+client/assets/images
+
 #Ide
 .idea
 # Logs

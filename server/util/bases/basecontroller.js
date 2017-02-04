@@ -1,10 +1,12 @@
 /**
  * Created by Jens on 19-Oct-16.
  */
+const Authenticator = require('../../users/authenticator');
 
 class BaseController {
     constructor(model) {
         this.model = model;
+		this.authenticator = Authenticator;
     }
 
     addObj(data, callback) {
@@ -52,6 +54,27 @@ class BaseController {
     delete(jwt, id, callback) {
         //TODO check jwt == admin then delete
     }
+
+    //NO ROUTE FOR UPDATE?
+	updateObj(id, updated, callback) {
+		let self = this;
+		this.getOne(id, function (err, found) {
+			if (!isNaN(found)) {
+				callback(err, found);
+			} else {
+				Object.assign(found, updated);
+				self.addObj(found, function (err, result) {
+					let errors = null;
+					if (err) {
+						if (err.name === "ValidationError") {
+							errors = self.handleValidationErrors(err);
+						}
+					}
+					callback(err, result, errors);
+				});
+			}
+		});
+	}
 
     handleValidationErrors(err) {
         console.log('should be overridden by subclass');

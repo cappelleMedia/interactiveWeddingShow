@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test file upload</title>
+	<script
+			src="https://code.jquery.com/jquery-3.1.1.min.js"
+			integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+			crossorigin="anonymous"></script>
+	<script
+			src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"
+			integrity="sha256-JklDYODbg0X+8sPiKkcFURb5z7RvlNMIaE3RA2z97vw="
+			crossorigin="anonymous"></script>
+
+	<base href="localhost">
+</head>
+<body>
+
+<form action="http://localhost:3000/api/v1/photos" enctype="multipart/form-data" method="POST">
+	<input type="text" name="imgName" id="imgName">
+	<input type="text" name="poster" id="poster">
+	<input type="text" name="description" id="description">
+	<input type="file" name="file" id="file">
+	<input type="submit" value="send">
+</form>
+
+<script>
+$.get('http://localhost:3000/api/v1/photos/ping', function(data) {
+	console.log(data);
+});
+</script>
+</body>
+</html>

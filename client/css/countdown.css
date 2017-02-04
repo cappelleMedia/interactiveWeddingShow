@@ -1,0 +1,18 @@
+header, header .heading{
+    font-size: 60px;
+}
+
+.smalltext {
+    font-size: 40px;
+}
+
+@media all and (max-width: 550px) {
+    #clock-holder span, #clock-holder div{
+    }
+}
+
+@media all and (max-width: 430px) {
+    #clock-holder {
+        font-size: 60px;
+    }
+}

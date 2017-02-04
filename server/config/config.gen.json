@@ -17,7 +17,7 @@
   },
   "jwt": {
     "auth": {
-      "expiresIn": "1h",
+      "expiresIn": "12h",
       "issuer": "s_m_wed:auth",
       "secret": ">PQo6b3^9gMH8MJcw%Pv:H9D"
     }

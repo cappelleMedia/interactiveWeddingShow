@@ -1,0 +1,23 @@
+body {
+    height: 100%;
+    background-color: black;
+}
+
+header {
+    background-color: #dca570;
+    height: 10%;
+}
+
+header h1 {
+    color: #000;
+}
+
+#image-slider {
+    height: 400px;
+    background-color: #70a7dc;
+}
+
+#gb-slider {
+    height: 400px;
+    background-color: #70dca5;
+}

@@ -10,11 +10,6 @@ let PhotoSchema = new mongoose.Schema({
     __v: {
         type: Number
     },
-    imgName: {
-        type: String,
-        required: true,
-        index: true
-    },
     poster: {
         type: String,
         required: true,

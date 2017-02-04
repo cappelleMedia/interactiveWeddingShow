@@ -1,3 +1,2 @@
-/**
- * Created by Jens on 26-Dec-16.
- */
+var lastPage; //TODO keep last page in cookie (refresh purposes);
+var currentPage;
