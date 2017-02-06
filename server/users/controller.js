@@ -15,64 +15,24 @@ class UserController extends BaseController {
 		if (data.secret && data.secret == config.jwt.auth.secret) {
 			data['accessFlag'] = 99;
 		} else {
-			data['accessFlag'] = -999;
+			data['accessFlag'] = 0;
 		}
 		super.addObj(data, callback);
 	}
 
 	containsUser(email, firstName, lastName, callback) {
-		//CHECK IF USER ALREADY REGISTERED
+		this.model
+			.find({
+				email: new RegExp('^' + email + '$', 'i'),
+				firstName: new RegExp('^' + firstName + '$', 'i'),
+				lastName: new RegExp('^' + lastName + '$', 'i'),
+			})
+			.exec(function (err, user) {
+				BaseController.getResult(err, user, callback);
+			});
 	}
 
-	activate(data, callback) {
-		let self = this;
-		let errors = {};
-		let status = 500;
-		async.waterfall([
-			function (next) {
-				if (!data._id || !data.regKey) {
-					errors['dev'] = 'Request was missing important information';
-					status = 400;
-					return next(status);
-				} else {
-					self.model
-						.findById(data._id)
-						.select('+regKey')
-						.exec(function (err, obj) {
-							next(err, obj);
-						});
-				}
-			},
-			function (user, next) {
-				if (user.accessFlag > 0) {
-					//Already activated
-					status = 401;
-					errors = null;
-					return next(status);
-				}
-				if ((user.regKey !== data.regKey)) {
-					//hide the error here
-					status = 401;
-					errors = null;
-					return next(status);
-				}
-				user.accessFlag = 0;
-				next(null, user);
-			},
-			function (updatedUser, done) {
-				self.updateObj(updatedUser._id, updatedUser, function (err, user, validationErrors) {
-					errors = validationErrors;
-					status = user.toTokenData();
-					done(err)
-				});
-			}
-
-		], function (err) {
-			callback(err, status, errors);
-		});
-	}
-
-	getFromEmail(email, include,callback) {
+	getFromEmail(email, include, callback) {
 		this.model
 			.find({email: new RegExp('^' + email + '$', 'i')})
 			.select(include)
@@ -104,7 +64,7 @@ class UserController extends BaseController {
 		if (!email || !password) {
 			callback(401, 401);
 		} else {
-			this.getFromEmail(email, '+password',function (err, users) {
+			this.getFromEmail(email, '+password', function (err, users) {
 				if (err || !isNaN(users)) {
 					BaseController.getResult(err, users, callback);
 				} else {
@@ -117,24 +77,5 @@ class UserController extends BaseController {
 
 		}
 	}
-
-	//FIXME THIS IS FOR TESTING ONLY, BEWARE
-	// getAdminToken(callback) {
-	// 	let self = this;
-	// 	if (process.env.NODE_ENV !== 'production') {
-	// 		this.getFromEmail('jens@itprosolutions.be', '',function (err, admins) {
-	// 			if (err || !isNaN(admins)) {
-	// 				BaseController.getResult(err, admins, callback);
-	// 			} else {
-	// 				var admin = admins[0];
-	// 				self.authenticator.getAdminToken(admin, function (err, result) {
-	// 					BaseController.getResult(err, result, callback);
-	// 				});
-	// 			}
-	// 		});
-	// 	} else {
-	// 		return callback(null, 401);
-	// 	}
-	// }
 }
 module.exports = UserController;

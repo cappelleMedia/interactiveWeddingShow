@@ -45,7 +45,7 @@ let UserSchema = new mongoose.Schema({
 	accessFlag: {
 		type: Number,
 		required: true,
-		default: -999
+		default: 0
 	}
 }, {autoIndex: config.mongo.autoIndex, id: false, read: 'secondaryPreferred'});
 

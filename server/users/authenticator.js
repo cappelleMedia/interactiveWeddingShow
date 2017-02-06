@@ -12,18 +12,6 @@ class Authenticator {
 		//should never be called
 	}
 
-	//FIXME THIS IS FOR TESTING ONLY, BEWARE
-	// static getAdminToken(admin, callback) {
-	// 	console.log(admin.toTokenData());
-	// 	if (process.env.NODE_ENV !== 'production') {
-	// 		jwt.sign(admin.toTokenData(), jwtConfig.secret, {issuer: jwtConfig.issuer}, function (err, token) {
-	// 			return callback(err, token);
-	// 		});
-	// 	} else {
-	// 		return callback(null, 401);
-	// 	}
-	// }
-
 	static authenticate(user, pwd, callback) {
 		let pwdValid = bcrypt.compareSync(pwd,user.password);
 		if (pwdValid && user.accessFlag == 99) {

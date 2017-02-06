@@ -11,23 +11,40 @@ blue = rgb(176,222,231) || #b0dee7*/
 .text-center {
     text-align: center;
 }
+
 .radish-text {
-    color: rgb(206,0,88);
+    color: rgb(206, 0, 88);
 }
+
 .pink-text {
-    color:rgb(232,156,174);
+    color: rgb(232, 156, 174);
 }
+
 .heading {
     margin-bottom: 15px;
 }
+
 .pretty-text {
     font-family: 'Great Vibes', cursive;
 }
+
+.s_m_btn {
+    font-family: 'Great Vibes', cursive;
+    display: block;
+    background-color: rgb(232, 156, 174);
+    text-align: center;
+    color: #fff;
+    padding: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;;
+}
+
 /*
     STYLES
 */
 #main-content h1 {
-    margin-top:60px;
+    margin-top: 60px;
     font-size: 22px;
     /*margin-top: 60px;*/
 }
