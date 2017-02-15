@@ -6,8 +6,23 @@ pink: rgb(232,156,174)
 blue = rgb(176,222,231) || #b0dee7*/
 
 /*
-    GENERAL CLASSES
+    STYLES
 */
+html{
+    height:100%;
+}
+body{
+    height:100%;
+}
+.content-box {
+    position: relative;
+    min-height:80%;
+
+}
+
+.fix{
+    clear: left;
+}
 .text-center {
     text-align: center;
 }
@@ -28,26 +43,95 @@ blue = rgb(176,222,231) || #b0dee7*/
     font-family: 'Great Vibes', cursive;
 }
 
-.s_m_btn {
+a.s_m_btn {
+    line-height:40px;
+    height:40px;
+    font-weight:bold;
     font-family: 'Great Vibes', cursive;
     display: block;
+    border: 1px solid #fff;
     background-color: rgb(232, 156, 174);
     text-align: center;
     color: #fff;
-    padding: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    border-radius: 5px;;
+    border-radius: 5px;
+    text-decoration: none;
+}
+a.s_m_btn:hover {
+    background-color: #fff;
+    border: 1px solid rgb(232, 156, 174);
+    text-align: center;
+    color: rgb(232, 156, 174);
 }
 
-/*
-    STYLES
-*/
+.icon-btn {
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    display: block;
+}
+
+.icon-btn a {
+    display: block;
+    text-decoration: none;
+}
+
+.icon-btn.add-btn {
+    background-color: #70dca5;
+}
+
+.icon-btn.add-btn a {
+    color: #fff;
+    text-decoration: none;
+}
+.icon-btn.add-btn a:hover {
+    background-color: #fff;
+    color: #70dca5;
+}
+
 #main-content h1 {
     margin-top: 60px;
     font-size: 22px;
     /*margin-top: 60px;*/
 }
+
+.menu-item {
+    text-align: center;
+    position: relative;
+    font-size: 42px;
+    height: 20%;
+    height: 20vh;
+}
+.menu-text {
+    font-family:'Great Vibes', cursive;
+    color: #fff;
+    width:100%;
+    position: absolute;
+    top: 50%;
+    left:0;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+#do-you-menu {
+    background-color: #B2DFDB;
+}
+
+/*
+    PANELS
+*/
+#do-you {
+    background-color: #B2DFDB;
+    color: #8AAEAA;
+}
+
+/*
+    MEDIA QUERIES
+ */
 
 @media all and (max-width: 550px) {
     #main-content {
