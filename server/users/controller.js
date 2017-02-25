@@ -12,12 +12,21 @@ class UserController extends BaseController {
 	}
 
 	addObj(data, callback) {
-		if (data.secret && data.secret == config.jwt.auth.secret) {
-			data['accessFlag'] = 99;
-		} else {
-			data['accessFlag'] = 0;
+		var self = this;
+		if(data.multi && data.multi === true) {
+			console.log('multi');
+		}else {
+			self.addUser(data, callback);
 		}
-		super.addObj(data, callback);
+	}
+
+	addUser(data, callback){
+        if (data.secret && data.secret == config.jwt.auth.secret) {
+            data['accessFlag'] = 99;
+        } else {
+            data['accessFlag'] = 0;
+        }
+        super.addObj(data, callback);
 	}
 
 	containsUser(email, firstName, lastName, callback) {

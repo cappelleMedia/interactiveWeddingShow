@@ -7,20 +7,35 @@
     </div>
     <div class="person-holder col-xs-8 col-xs-offset-2">
         <div class="form-group has-feedback form-group-sm">
-            <label for="firstName<%= count%>">
+            <label for="firstName<%= count %>">
                 Voornaam:
             </label>
-            <input type="text" class="form-control"
-                   id="firstName<%= count%>" name="firstName<%= count%>"
-                   placeholder="Vul hier je voornaam in">
+            <input type="text" class="form-control validation-candidate fn-double"
+                   autocomplete="given-name"
+                   data-validation-type="not-empty"
+                   data-double-type="fn-double"
+                   id="firstName<%= count %>" name="firstName<%= count %>"
+                   placeholder="Vul hier je voornaam in"
+                   required>
+            <div class="form-control-feedback">
+                <i id="firstName<%= count %>-feedback-icon" class="fa"></i>
+            </div>
+            <div id="firstName<%= count %>-error-message" class="error-message text-danger"></div>
         </div>
         <div class="form-group has-feedback form-group-sm">
-            <label for="lastName<%= count%>">
+            <label for="lastName<%= count %>">
                 Achternaam:
             </label>
-            <input type="text" class="form-control"
-                   id="lastName<%= count%>" name="lastName<%= count%>"
-                   placeholder="Vul hier je achternaam in">
+            <input type="text" class="form-control validation-candidate"
+                   autocomplete="family-name"
+                   data-validation-type="not-empty"
+                   id="lastName<%= count %>" name="lastName<%= count %>"
+                   placeholder="Vul hier je achternaam in"
+                   required>
+            <div class="form-control-feedback">
+                <i id="lastName<%= count %>-feedback-icon" class="fa"></i>
+            </div>
+            <div id="lastName<%= count %>-error-message" class="error-message text-danger"></div>
         </div>
     </div>
 </div>

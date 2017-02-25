@@ -119,7 +119,6 @@ p.s_m_radio.s_m_radio-val .small-text {
 
 #registerForm .icon-btn.add-btn{
     display: none;
-    transition: all 300ms;
 }
 
 .multi-form #registerForm .icon-btn.add-btn {
@@ -142,7 +141,20 @@ p.s_m_radio.s_m_radio-val .small-text {
     margin-bottom: 20px;
 }
 
+#registerForm .form-control-feedback {
+    top: 30px;
 
+}
+
+#registerForm .error-message {
+    display: none;
+    font-size: 0.7em;
+    margin: 3px 5px 0;
+}
+
+#registerForm .has-error .error-message {
+    display: block;
+}
 
 @media all and (max-width: 400px){
 
