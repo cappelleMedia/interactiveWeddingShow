@@ -8,21 +8,30 @@ blue = rgb(176,222,231) || #b0dee7*/
 /*
     STYLES
 */
-html{
-    height:100%;
+html {
+    height: 100%;
 }
-body{
-    height:100%;
+
+body {
+    height: 100%;
 }
+
+.item-block {
+    height: 100%;
+}
+
 .content-box {
-    position: relative;
-    min-height:80%;
+    display: none;
+    overflow: hidden;
+    height: 80%;
+    height: 80vh;
 
 }
 
-.fix{
+.fix {
     clear: left;
 }
+
 .text-center {
     text-align: center;
 }
@@ -35,18 +44,14 @@ body{
     color: rgb(232, 156, 174);
 }
 
-.heading {
-    margin-bottom: 15px;
-}
-
 .pretty-text {
     font-family: 'Great Vibes', cursive;
 }
 
 a.s_m_btn {
-    line-height:40px;
-    height:40px;
-    font-weight:bold;
+    line-height: 40px;
+    height: 40px;
+    font-weight: bold;
     font-family: 'Great Vibes', cursive;
     display: block;
     border: 1px solid #fff;
@@ -58,6 +63,7 @@ a.s_m_btn {
     border-radius: 5px;
     text-decoration: none;
 }
+
 a.s_m_btn:hover {
     background-color: #fff;
     border: 1px solid rgb(232, 156, 174);
@@ -85,62 +91,132 @@ a.s_m_btn:hover {
     color: #fff;
     text-decoration: none;
 }
+
 .icon-btn.add-btn a:hover {
     background-color: #fff;
     color: #70dca5;
-}
-
-#main-content h1 {
-    margin-top: 60px;
-    font-size: 22px;
-    /*margin-top: 60px;*/
-}
-
-.menu-item {
-    text-align: center;
-    position: relative;
-    font-size: 42px;
-    height: 20%;
-    height: 20vh;
-}
-.menu-text {
-    font-family:'Great Vibes', cursive;
-    color: #fff;
-    width:100%;
-    position: absolute;
-    top: 50%;
-    left:0;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-#do-you-menu {
-    background-color: #B2DFDB;
 }
 
 /*
     PANELS
 */
 #do-you {
-    background-color: #B2DFDB;
-    color: #8AAEAA;
+    background-color: #80BFCC;
+    color: #FFF;
+}
+
+#info {
+    background-color: #CC8DA6;
+    color: #FFF;
+    font-family: 'Oswald', sans-serif;
+}
+
+#photoboot {
+    background-color: #FFA7A4;
+    color: #FFC8C7;
+}
+
+#guestbook {
+    background-color: #B9FFE5;
+    color: #000;
+}
+
+#info .info-content {
+    width: 90%;
+    margin: 0 auto;
+    display: none;
+    -webkit-transition: all 400ms;
+    -moz-transition: all 400ms;
+    -ms-transition: all 400ms;
+    -o-transition: all 400ms;
+    transition: all 400ms;
+}
+
+#info .info-content.active {
+    display: block;
+    -webkit-transition: all 400ms;
+    -moz-transition: all 400ms;
+    -ms-transition: all 400ms;
+    -o-transition: all 400ms;
+    transition: all 400ms;
+}
+
+.info-content .indeling-block {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.info-content {
+    color: #E3BACB;
+    font-size: 20px;
+}
+
+.info-content h3 {
+    color: #FFF;
+}
+
+#overnachting.info-content,
+#parking.info-content {
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+#overnachting.info-content .btn,
+#parking.info-content .btn {
+    margin-bottom: 20px;
+}
+/*ERRORS*/
+#notifications {
+    position: fixed;
+    top: 5px;
+    margin: 0;
+    width: 100%;
+}
+
+.notif {
+    display: none;
+    opacity: 20;
+    cursor: pointer;
+    padding: 0 10px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
 }
 
 /*
     MEDIA QUERIES
  */
 
-@media all and (max-width: 550px) {
-    #main-content {
-        /*margin-top: 50px;*/
+@media all and (max-width: 600px) {
+    .info-content h3 {
+        font-size: 18px;
+    }
+
+    .info-content h4 {
+        font-size: 16px;
+    }
+
+    .content-box {
+        overflow: auto;
     }
 }
 
-@media all and (max-width: 430px) {
-    #main-content {
-        /*margin-top: 20px;*/
+@media all and (max-width: 500px) {
+    .info-content h3 {
+        font-size: 17px;
+    }
+
+    .info-content h4 {
+        font-size: 15px;
     }
 }
+
+@media all and (max-width: 450px) {
+
+}
+
+@media all and (max-width: 350px) {
+
+}
+
+

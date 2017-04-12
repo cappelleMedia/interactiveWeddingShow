@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base href="../">
+	<!--<editor-fold desc="meta">-->
+	<meta charset="UTF-8">
+	<meta name="fragment" content="!">
+	<meta name="description" content="Trouw website Sarah en Mathias">
+	<meta name="keywords" content="Trouw, Sarah, Mathias, Marriage, Wedding">
+	<meta name="author" content="Cappelle-Media">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--</editor-fold>-->
+	
+	<!--<editor-fold desc="favicon">-->
+	<link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+	<link rel="manifest" href="assets/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<!--</editor-fold>-->
+	
+	<title>Sarah-mathias Admin portal</title>
+	
+	<!--<editor-fold desc="fonts">-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<!--</editor-fold>-->
+	
+	<!--<editor-fold desc="stylesheets">-->
+	<link rel="stylesheet" href="css/html5reset.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet"
+		  href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.16/css/perfect-scrollbar.min.css"
+		  integrity="sha256-TFjSH5O9c3lYx2Vbbxbnb/xYR9FIIVBc6FEr7KO+GHc=" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="css/admin/main.css">
+	<!--</editor-fold>-->
+</head>
+
+<body>
+<div>
+	<div id="login-block">
+		<div id="login-header">
+			Login to the admin portal
+		</div>
+		<div id="login-body">
+			<form id="login-form" class="s_m_form">
+				<div class="form-group has-feedback form-group-sm">
+					<label for="username">
+						Gebruiker:
+					</label>
+					<input type="text" class="form-control validation-candidate"
+						   data-validation-type="not-empty"
+						   id="username" name="username"
+						   placeholder="Vul hier je unieke gebruikersnaam in"
+						   required>
+					<div class="form-control-feedback">
+						<i id="username-feedback-icon" class="fa"></i>
+					</div>
+					<div id="username-error-message" class="error-message text-danger"></div>
+				</div>
+				<div class="form-group has-feedback form-group-sm">
+					<label for="password">
+						Wachtwoord:
+					</label>
+					<input type="password" class="form-control validation-candidate"
+						   data-validation-type="not-empty"
+						   id="password" name="password"
+						   placeholder="Vul hier je wachtwoord in"
+						   required>
+					<div class="form-control-feedback">
+						<i id="password-feedback-icon" class="fa"></i>
+					</div>
+					<div id="password-error-message" class="error-message text-danger"></div>
+				</div>
+			
+			</form>
+		</div>
+	</div>
+</div>
+
+
+<!--<editor-fold desc="Notifications">-->
+<div id="notifications" class="">
+
+</div>
+<!--</editor-fold>-->
+
+<!--<editor-fold desc="Scripts">-->
+<!--<editor-fold desc="script loaders">-->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+		crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"
+		integrity="sha256-JklDYODbg0X+8sPiKkcFURb5z7RvlNMIaE3RA2z97vw="
+		crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"
+		integrity="sha256-IyWBFJYclFY8Pn32bwWdSHmV4B9M5mby5bhPHEmeY8w=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.16/js/perfect-scrollbar.min.js"
+		integrity="sha256-ASy3ztALqIEF70qFubeh9flYKLs5A1I+FkeXqUokzjk=" crossorigin="anonymous"></script>
+<script src="lib/ejs/ejs_production.js"></script>
+<script src="lib/cookie/js.cookie.js"></script>
+<!--</editor-fold>-->
+<!--<editor-fold desc="custom scripts">-->
+<script src="js/forms.js"></script>
+<script src="js/admin/main.js"></script>
+<!--</editor-fold>-->
+<!--</editor-fold>-->
+</body>
+</html>

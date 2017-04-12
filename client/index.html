@@ -9,90 +9,350 @@
         var base = 'http://' + host + '/';
         document.write('<base href="' + base + '"/>');
 	</script>
+	<!--<editor-fold desc="meta">-->
 	<meta charset="UTF-8">
 	<meta name="fragment" content="!">
 	<meta name="description" content="Trouw website Sarah en Mathias">
 	<meta name="keywords" content="Trouw, Sarah, Mathias, Marriage, Wedding">
 	<meta name="author" content="Cappelle-Media">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--</editor-fold>-->
+	
+	<!--<editor-fold desc="favicon">-->
+	<link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+	<link rel="manifest" href="assets/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<!--</editor-fold>-->
 	
 	<title>Trouw Sarah en Mathias</title>
 	
-	<!--FONTS-->
+	<!--<editor-fold desc="fonts">-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<!--</editor-fold>-->
 	
-	<!--STYLES-->
+	<!--<editor-fold desc="stylesheets">-->
 	<link rel="stylesheet" href="css/html5reset.css">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
 		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/errors.css">
+	
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/countdown.css">
 	<link rel="stylesheet" href="css/menu.css">
-	
-	<style>
-		#main-wrap {
-			position: absolute;
-			left: 50%;
-			top: 40%;
-			-webkit-transform: translate(-50%, -50%);
-			transform: translate(-50%, -50%);
-			width: 100%;
-		}
-	</style>
+	<link rel="stylesheet" href="css/forms.css">
+	<!--</editor-fold>-->
 </head>
 
-<body class=" radish-text">
-<div id="main-wrap">
-	<header class="container-fluid pretty-text">
-		<div id="clock-holder" class="row text-center">
-			<h1 class="heading">
-				Sarah & Mathias
-				<br>do in:
-			</h1>
-			<div id="clockdiv">
-				<div class="col-sm-2 col-sm-offset-2 col-xs-3">
-					<span class="days"></span>
-					<div class="smalltext">Days</div>
+<body class="box box-100">
+<!--<editor-fold desc="Clock">-->
+<div id="clock-holder" class="menu-item col-md-6 col-md-offset-3 col-xs-12 pretty-text">
+	<h1 class="heading">
+		Sarah & Mathias do in:
+	</h1>
+	<div id="clockdiv">
+		<div class="col-sm-2 col-sm-offset-2 col-xs-3">
+			<span class="days">00</span>
+			<div class="smalltext">Days</div>
+		</div>
+		<div class="col-sm-2 col-xs-3">
+			<span class="hours">00</span>
+			<div class="smalltext">Hours</div>
+		</div>
+		<div class="col-sm-2 col-xs-3">
+			<span class="minutes">00</span>
+			<div class="smalltext">Minutes</div>
+		</div>
+		<div class="col-sm-2 col-xs-3">
+			<span class="seconds">00</span>
+			<div class="smalltext">Seconds</div>
+		</div>
+	</div>
+</div>
+<!--</editor-fold>-->
+
+<!--<editor-fold desc="Do you">-->
+<div id="do-you-menu" class="menu-item col-md-6 col-md-offset-3 col-xs-12 " data-target="do-you">
+	<div class="menu-text col-xs-12">
+		Do you?
+	</div>
+	<div class="menu-close">
+		<i class="fa fa-window-close"></i>
+	</div>
+</div>
+<div id="do-you" class="col-md-6 col-md-offset-3 content-box scrollBox">
+	<div id="form-holder" class="">
+		<div id="form-control-holders" class="row">
+			<div id="group-switch" class="col-xs-12">
+				<div class="switch-btn selected" id="group-off">
+					<div class="s_m_radio s_m_radio-btn">
+						<div class="s_m_radio-btn-inner"></div>
+					</div>
+					<p class="s_m_radio s_m_radio-val">
+						Persoonlijke registratie
+					</p>
 				</div>
-				<div class="col-sm-2 col-xs-3">
-					<span class="hours"></span>
-					<div class="smalltext">Hours</div>
-				</div>
-				<div class="col-sm-2 col-xs-3">
-					<span class="minutes"></span>
-					<div class="smalltext">Minutes</div>
-				</div>
-				<div class="col-sm-2 col-xs-3">
-					<span class="seconds"></span>
-					<div class="smalltext">Seconds</div>
+				<div class="fix"></div>
+				<div class="switch-btn" id="group-on">
+					<div class="s_m_radio s_m_radio-btn">
+						<div class="s_m_radio-btn-inner"></div>
+					</div>
+					<p class="s_m_radio s_m_radio-val">
+						Groepsregistratie <span class="small-text">(Meerdere met 1 email)</span>
+					</p>
 				</div>
 			</div>
 		</div>
-	</header>
-	
-	<main id="main-content">
-		<h1 class="text-center pink-text">
-			Binnenkort meer informatie en opening van de registraties
-		</h1>
-	</main>
+		
+		<form class="s_m_form" id="registerForm" method="POST" action="#" autocomplete="off">
+			<div class="row hidden" id="form-errors">
+				<div class="col-xs-8 col-xs-offset-2">
+					<div class="alert alert-danger">
+					</div>
+				</div>
+			</div>
+			<div class="form-group form-filter hidden">
+				<label for="input-filter">Niet invullen</label>
+				<div class="form-group input-group">
+					<span class="input-group-addon"><i class="fa fa-ban"></i></span>
+					<input autofocus type="text" class="form-control" id="input-filter" name="input-filter"
+						   placeholder="Are you a robot?">
+				</div>
+			</div>
+			<div class="row">
+				<div class="email-holder col-xs-8 col-xs-offset-2">
+					<div class="form-group has-feedback form-group-sm">
+						<label for="email">
+							Email:
+						</label>
+						<input autofocus type="email"
+						
+							   class="form-control validation-candidate"
+							   data-validation-type="email"
+							   id="email" name="email"
+							   placeholder="Vul hier je email adres in"
+							   required>
+						<div class="form-control-feedback">
+							<i id="email-feedback-icon" class="fa"></i>
+						</div>
+						<div id="email-error-message" class="error-message text-danger">
+							Email is een verplicht veld!
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="person-blocks">
+				<div class="person-block row">
+					<div class="person-holder col-xs-8 col-xs-offset-2">
+						<div class="form-group has-feedback form-group-sm">
+							<label for="firstName1">
+								Voornaam:
+							</label>
+							<input type="text" class="form-control validation-candidate fn-double"
+							
+								   data-validation-type="not-empty"
+								   data-double-type="fn-double"
+								   id="firstName1" name="firstName1"
+								   placeholder="Vul hier je voornaam in"
+								   required>
+							<div class="form-control-feedback">
+								<i id="firstName1-feedback-icon" class="fa"></i>
+							</div>
+							<div id="firstName1-error-message" class="error-message text-danger"></div>
+						</div>
+						<div class="form-group has-feedback form-group-sm">
+							<label for="lastName1">
+								Achternaam:
+							</label>
+							<input type="text" class="form-control validation-candidate"
+							
+								   data-validation-type="not-empty"
+								   id="lastName1" name="lastName1"
+								   placeholder="Vul hier je achternaam in"
+								   required>
+							<div class="form-control-feedback">
+								<i id="lastName1-feedback-icon" class="fa"></i>
+							</div>
+							<div id="lastName1-error-message" class="error-message text-danger"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row btn-holder">
+				<div class="col-xs-8 col-xs-offset-2">
+					<div class="icon-btn add-btn" id="person-add-btn">
+						<a href="#" class="text-center">
+							<i class="fa fa-plus"></i>
+							<span class="small-text">Persoon toevoegen</span>
+						</a>
+					</div>
+					<a href="#" id="formSubmit" class="s_m_btn">
+						I Do
+					</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!--</editor-fold>-->
+
+<!--<editor-fold desc="informations">-->
+<div id="info-menu" class="menu-item col-md-6 col-md-offset-3 col-xs-12" data-target="info">
+	<div class="menu-text col-xs-12">
+		Information
+	</div>
+	<div class="menu-close">
+		<i class="fa fa-window-close"></i>
+	</div>
+</div>
+<div id="info" class="col-md-6 col-md-offset-3 content-box scrollBox">
+	<div id="sub-menu">
+		<div class="sub-menu-item active" data-target="dagindeling">
+			Dagindeling
+		</div>
+		<div class="sub-menu-item" data-target="overnachting">
+			Overnachting
+		</div>
+		<div class="sub-menu-item" data-target="parking">
+			Parking
+		</div>
+		<div class="fix"></div>
+	</div>
+	<div id="info-content-holder">
+		<div id="dagindeling" class="info-content text-center active">
+			<div class="indeling-block">
+				<h3>12u30</h3>
+				<h4>Huwelijk gemeentehuis Leuven</h4>
+				<h5>@Grote Markt</h5>
+			</div>
+			<div class="indeling-block">
+				<h3>13u00</h3>
+				<h4>Apero</h4>
+				<h5>@Bar Del Sol</h5>
+			</div>
+			<div class="indeling-block">
+				<h3>16u00</h3>
+				<h4>Kerkelijke viering, Sint-Jan-De-Doperkerk</h4>
+				<h5>@Groot Begijnhof</h5>
+			</div>
+			<div class="indeling-block">
+				<h3>17u00</h3>
+				<h4>Faculty club</h4>
+				<h5>@Groot Begijnhof</h5>
+			</div>
+		</div>
+		<div id="overnachting" class="info-content">
+			<p>
+				Het Begijnhotel Leuven is gelegen vlak naast de Faculty club. Voor zij die een overnachting boeken is er
+				de
+				dag nadien een brunch voorzien tot 12u30.
+			</p>
+			<p>
+				Meer info: <a href="http://www.bchotel.be/">http://www.bchotel.be/</a>
+			</p>
+			<p>
+				Gelieve voor de reservatie enkel te werken via <a
+					href="assets/download/Overnachting_Huwelijk_Derutter_Brant_reservatie.pdf" download>dit</a>
+				formulier. Hierdoor zal je kunnen genieten van ons
+				speciaal huwelijkstarief.
+			</p>
+			
+			<a class="btn btn-primary pull-right"
+			   href="assets/download/Overnachting_Huwelijk_Derutter_Brant_reservatie.pdf" download>
+				Download formulier
+			</a>
+		</div>
+		<div id="parking" class="info-content">
+			<p>
+				Wij raden iedereen aan om de wagen reeds vanaf het begin van onze mooie dag te plaatsen op de parking
+				van de Faculty club.
+			</p>
+			<p>
+				De rest van de dag kunnen alle locaties vlot te voet bereikt worden.
+			</p>
+			<p>
+				De parking van de Faculty Club is bereikbaar via de ring (Tervuursevest).<br>
+				We verwijzen graag naar <a href="assets/download/parking_trouw_derutter_brant.pdf" class="link"
+										   download>deze</a> routebeschrijving.
+			</p>
+			<a href="assets/download/parking_trouw_derutter_brant.pdf.pdf" class="btn btn-primary pull-right" download>
+				Download Route beschrijving
+			</a>
+		</div>
+	</div>
+</div>
+<!--</editor-fold>-->
+
+<!--<editor-fold desc="photoboot">-->
+<div id="photoboot-menu" class="menu-item col-md-6 col-md-offset-3 col-xs-12" data-target="photoboot">
+	<div class="menu-text col-xs-12">
+		???
+	</div>
+	<div class="menu-close">
+		<i class="fa fa-window-close"></i>
+	</div>
+</div>
+<div id="photoboot" class="col-md-6 col-md-offset-3 content-box scrollBox">
+	Will be revealed on W-day!
+</div>
+<!--</editor-fold>-->
+
+<!--<editor-fold desc="guestbook">-->
+<div id="guestbook-menu" class="menu-item col-md-6 col-md-offset-3 col-xs-12" data-target="guestbook">
+	<div class="menu-text col-xs-12">
+		???
+	</div>
+	<div class="menu-close">
+		<i class="fa fa-window-close"></i>
+	</div>
+</div>
+<div id="guestbook" class="col-md-6 col-md-offset-3 content-box scrollBox">
+	Will be revealed on W-day!
+</div>
+<!--</editor-fold>-->
 </div>
 
-<script
-		src="https://code.jquery.com/jquery-3.1.1.min.js"
+<!--<editor-fold desc="Notifications">-->
+<div id="notifications" class="">
+
+</div>
+<!--</editor-fold>-->
+
+<!--<editor-fold desc="Scripts">-->
+<!--<editor-fold desc="script loaders">-->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
 		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 		crossorigin="anonymous"></script>
-<script
-		src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"
+<script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"
 		integrity="sha256-JklDYODbg0X+8sPiKkcFURb5z7RvlNMIaE3RA2z97vw="
 		crossorigin="anonymous"></script>
-
 <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"
 		integrity="sha256-IyWBFJYclFY8Pn32bwWdSHmV4B9M5mby5bhPHEmeY8w=" crossorigin="anonymous"></script>
-
-<script src="js/countdown.js"></script>
+<script src="lib/nicescroll/jquery.nicescroll.min.js"></script>
+<script src="lib/ejs/ejs_production.js"></script>
+<script src="lib/cookie/js.cookie.js"></script>
+<!--</editor-fold>-->
+<!--<editor-fold desc="custom scripts">-->
 <script src="js/main.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/countdown.js"></script>
+<script src="js/forms.js"></script>
+<!--</editor-fold>-->
+<!--</editor-fold>-->
 </body>
 </html>

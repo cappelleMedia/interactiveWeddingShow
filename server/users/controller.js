@@ -13,8 +13,30 @@ class UserController extends BaseController {
 
 	addObj(data, callback) {
 		var self = this;
-		if(data.multi && data.multi === true) {
-			console.log('multi');
+		if(data.multi && data.multi == 'true') {
+			var result = {
+				err: '',
+				objectList: {
+					email: ''
+				},
+				validationResults: []
+			};
+			async.each(data.users, function(user, cb) {
+				self.addUser(user, function(err, newObj, validationResult) {
+					if(err) {
+						result.validationResults.push(validationResult);
+						cb(err);
+					} else {
+						if(!result.objectList.email){
+							result.objectList.email = newObj.email;
+						}
+						result.objectList[newObj.firstName] = newObj;
+						cb();
+					}
+				});
+			}, function(err) {
+				callback(result.err,result.objectList,null);
+			});
 		}else {
 			self.addUser(data, callback);
 		}

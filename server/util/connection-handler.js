@@ -24,7 +24,7 @@ class ConnectionHandler {
             winston.error('connection to mongodb failed');
         });
         db.once('open', function () {
-            winston.info('Connected to mongodb!');
+            winston.info('Connected to mongodb on ' + config.mongo.uri + '!');
         });
         return db;
     }

@@ -1,0 +1,15 @@
+{
+  "name": "marriage-app",
+  "script": "index.js",
+  "watch": true,
+  "merge_logs": true,
+  "cwd": "/usr/www/s_m_mar/server",
+  "env": {
+    "NODE_ENV": "production",
+    "AWESOME_SERVICE_API_TOKEN": "s_m_wedding"
+  },
+  "env_production": {
+    "NODE_ENV": "production"
+  },
+  "autorestart": true
+}

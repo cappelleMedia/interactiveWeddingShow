@@ -18,7 +18,7 @@
 .switch-btn {
     height: 20px;
     cursor: pointer;
-    color: #8AAEAA;
+    color: #FFF;
     font-weight: bold;
 }
 
@@ -34,7 +34,7 @@
 .s_m_radio.s_m_radio-btn {
     width: 20px;
     height: 20px;
-    border: solid 3px #8AAEAA;
+    border: solid 3px #FFF;
 }
 
 .s_m_radio, .s_m_radio-btn-inner{
@@ -42,10 +42,10 @@
 }
 
 .switch-btn.selected .s_m_radio.s_m_radio-btn .s_m_radio-btn-inner {
-    background-color: #8AAEAA;
+    background-color: #FFF;
     width: 100%;
     height: 100%;
-    border: 2px solid #B2DFDB;
+    border: 2px solid #80BFCC;
 }
 
 p.s_m_radio.s_m_radio-val {
@@ -167,7 +167,7 @@ p.s_m_radio.s_m_radio-val .small-text {
         font-size: 9px;
     }
 
-    .s_m_form {
+    .s_m_form label{
         font-size: 16px;
     }
 

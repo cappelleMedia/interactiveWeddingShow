@@ -1,14 +1,13 @@
-/**
- * Created by Jens on 05-Feb-17.
- */
-/*
- * Add form validations
- *
- *
- * */
-window.onload = function () {
+var host = document.location.host;
+if (host.indexOf('localhost') === 0) {
+    host = 'localhost:3000';
+}
+var apiBase = 'http://' + host + '/api/v1/';
+document.onload = formsInit();
+
+function formsInit() {
     setFormListeners();
-};
+}
 
 function setFormListeners() {
     $('#group-off').on('click', function () {
@@ -43,11 +42,11 @@ function setFormListeners() {
         prepareForSubmit();
     });
 
-    $('#registerForm').on('keyup', '.validation-candidate', function () {
+    $('.s_m_form').on('blur', '.validation-candidate', function () {
         validateField(this);
     });
 
-    $('#registerForm').on('keypress', function (e) {
+    $('.s_m_form').on('keypress', function (e) {
         var keyCode = e.which || e.keyCode;
         if (keyCode == 13) {
             e.preventDefault();
@@ -91,6 +90,9 @@ function setInvalid(el, valid) {
 }
 
 function validateForm() {
+    if (document.getElementById('input-filter').value) {
+        return;
+    }
     var fields = $('.validation-candidate'),
         isValid = true;
 
@@ -108,7 +110,8 @@ function prepareForSubmit() {
     }
     var email = document.getElementById('email').value,
         blocks = $('.person-block'),
-        users = {};
+        result = {};
+    result['users'] = {};
     for (var index = 0; index < blocks.length; index++) {
         var id = index + 1,
             firstName = document.getElementById('firstName' + id).value,
@@ -118,15 +121,23 @@ function prepareForSubmit() {
                 'firstName': firstName,
                 'lastName': lastName
             };
-        users['user' + id] = person;
+        result['users']['user' + id] = person;
     }
-    sendForm(users);
+    sendForm(result);
 }
 
 function sendForm(users) {
     users['multi'] = true;
-    var a = JSON.stringify(users);
-    console.log(a);
+    var apiUrl = apiBase + 'users';
+    $.post(apiUrl, users, function (data) {
+        $('#registerForm').trigger('reset');
+        toggleMenu(document.getElementById('do-you-menu'));
+        setCookie('user',data.email);
+        showNotifcation('success', 'Registratie succesvol!');
+    })
+        .fail(function () {
+            showNotifcation('error', 'Er ging iets mis bij het registreren :(');
+        });
 }
 
 function isValidField(field) {

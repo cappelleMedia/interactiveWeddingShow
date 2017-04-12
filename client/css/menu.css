@@ -1,33 +1,128 @@
-#main-menu {
-}
-
-#main-menu .link-btn{
-    margin: 15px;
-    height: 50px;
-    line-height:50px;
-    font-size: 28px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    color:  rgb(206,0,88);
-    border: solid 2px rgb(206,0,88);
+.menu-item {
+    text-align: center;
+    position: relative;
+    font-size: 42px;
+    height: 20%;
+    height: 20vh;
     cursor: pointer;
-    font-weight:bold;
 }
 
-#main-menu .link-btn:hover{
-    background-color: rgb(206,0,88);
+.menu-item:hover .menu-text {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.menu-text {
+    font-family: 'Great Vibes', cursive;
     color: #fff;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
-@media all and (max-width: 550px) {
-    #main-menu .link-btn{
+.menu-text .fa {
+}
+
+#do-you-menu {
+    background-color: #80BFCC;
+}
+
+#info-menu {
+    background-color: #CC8DA6;
+}
+
+#photoboot-menu {
+    background-color: #FFA7A4;
+}
+
+#guestbook-menu {
+    background-color: #B9FFE5;
+}
+
+.menu-close {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 24px;
+}
+
+#do-you-menu .menu-close {
+    color: #B2DFE7;
+}
+
+#info-menu .menu-close {
+    color: #E3BACB;
+}
+
+#photoboot-menu .menu-close {
+    color: #FFC8C7;
+}
+
+.menu-item.active .menu-close {
+    display: block;
+}
+
+.sub-menu-item {
+    color: #E3BACB;
+    float: left;
+    width: 33.33%;
+    text-align: center;
+    height: 100px;
+    line-height: 100px;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.sub-menu-item:hover {
+    color: #FFF;
+}
+
+.sub-menu-item.active {
+    color: #fff;
+
+}
+
+@media all and (max-width: 600px) {
+    .sub-menu-item {
         font-size: 24px;
     }
 }
 
-@media all and (max-width: 430px) {
-    #main-menu .link-btn{
-        font-size: 22px;
+@media all and (max-width: 500px) {
+    .sub-menu-item {
+        font-size: 20px;
+    }
+}
+
+@media all and (max-width: 450px) {
+    .sub-menu-item {
+        font-size: 18px;
+    }
+}
+
+@media all and (max-width: 350px) {
+    .sub-menu-item {
+        font-size: 14px;
+    }
+}
+
+@media all and (max-width: 250px) {
+    .sub-menu-item {
+        float: none;
+        padding: 0;
+        height: auto;
+        line-height: inherit;
+        width: 100%;
+    }
+
+    .sub-menu-item:nth-child(0) {
+        border: 1px #E3BACB solid;
     }
 }

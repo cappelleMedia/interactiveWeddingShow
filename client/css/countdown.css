@@ -1,10 +1,18 @@
-header, header .heading{
-    font-size: 60px;
+#clock-holder{
+    background-color: #528C99;
+    font-size: 25px;
+    color: #FFF;
+}
+#clock-holder .heading ,
+#clock-holder .smalltext{
+    font-size: 0.7em;
 }
 
-.smalltext {
-    font-size: 40px;
+.heading {
+    margin-bottom: 0;
+    margin-top: 5px;
 }
+
 
 @media all and (max-width: 550px) {
     #clock-holder span, #clock-holder div{
@@ -13,6 +21,6 @@ header, header .heading{
 
 @media all and (max-width: 430px) {
     #clock-holder {
-        font-size: 60px;
+
     }
 }
