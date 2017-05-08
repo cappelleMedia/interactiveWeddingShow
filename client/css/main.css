@@ -168,7 +168,7 @@ a.s_m_btn:hover {
 /*ERRORS*/
 #notifications {
     position: fixed;
-    top: 5px;
+    top: 0;
     margin: 0;
     width: 100%;
 }

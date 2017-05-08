@@ -141,18 +141,18 @@ p.s_m_radio.s_m_radio-val .small-text {
     margin-bottom: 20px;
 }
 
-#registerForm .form-control-feedback {
+#registerForm .form-control-feedback,
+#login-form .form-control-feedback {
     top: 30px;
-
 }
 
-#registerForm .error-message {
+.s_m_form .error-message {
     display: none;
     font-size: 0.7em;
     margin: 3px 5px 0;
 }
 
-#registerForm .has-error .error-message {
+.s_m_form .has-error .error-message {
     display: block;
 }
 

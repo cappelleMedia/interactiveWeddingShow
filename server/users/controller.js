@@ -13,7 +13,7 @@ class UserController extends BaseController {
 
 	addObj(data, callback) {
 		var self = this;
-		if(data.multi && data.multi == 'true') {
+		if (data.multi && data.multi === 'true') {
 			var result = {
 				err: '',
 				objectList: {
@@ -21,34 +21,53 @@ class UserController extends BaseController {
 				},
 				validationResults: []
 			};
-			async.each(data.users, function(user, cb) {
-				self.addUser(user, function(err, newObj, validationResult) {
-					if(err) {
+			async.each(data.users, function (user, cb) {
+				self.addUser(user, function (err, newObj, validationResult) {
+					if (err) {
 						result.validationResults.push(validationResult);
 						cb(err);
 					} else {
-						if(!result.objectList.email){
+						if (!result.objectList.email) {
 							result.objectList.email = newObj.email;
 						}
 						result.objectList[newObj.firstName] = newObj;
 						cb();
 					}
 				});
-			}, function(err) {
-				callback(result.err,result.objectList,null);
+			}, function (err) {
+				callback(result.err, result.objectList, null);
 			});
-		}else {
+		} else {
 			self.addUser(data, callback);
 		}
 	}
 
-	addUser(data, callback){
-        if (data.secret && data.secret == config.jwt.auth.secret) {
-            data['accessFlag'] = 99;
-        } else {
-            data['accessFlag'] = 0;
-        }
-        super.addObj(data, callback);
+	getAll(limit, skip, callback) {
+		this.model
+			.find()
+			.skip(skip)
+			.limit(limit)
+			.where('accessFlag').ne(99)
+			.exec(function (err, objects) {
+				if (err) {
+					callback(err, 500);
+				} else {
+					if (!objects || !objects.length) {
+						callback(err, 404);
+					} else {
+						callback(err, objects);
+					}
+				}
+			});
+	}
+
+	addUser(data, callback) {
+		if (data.secret && data.secret === config.jwt.auth.secret) {
+			data['accessFlag'] = 99;
+		} else {
+			data['accessFlag'] = 0;
+		}
+		super.addObj(data, callback);
 	}
 
 	containsUser(email, firstName, lastName, callback) {

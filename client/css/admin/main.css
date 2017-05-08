@@ -1,3 +1,6 @@
+/*
+    login styles
+*/
 #login-panel {
     position: relative;
 }
@@ -5,7 +8,7 @@
 #login-block {
     position: absolute;
     width: 300px;
-    border: 2px solid #8AAEAA;
+    border: 2px solid #528C99;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
@@ -19,7 +22,7 @@
 }
 
 #login-block > #login-header {
-    background-color: #8AAEAA;
+    background-color: #528C99;
     color: #ffffff;
     text-align: center;
 }
@@ -30,5 +33,110 @@
 
 #login-block > #login-body {
     padding: 10px 25px;
-    color: #8AAEAA;
+    color: #528C99;
+}
+
+/*
+    Admin button styles
+*/
+
+.s_m_btn_admin {
+    background-color: #528C99;
+    border: 1px #528C99 solid;
+    padding: 8px;
+    display: block;
+    text-align: center;
+    color: #FFF;
+}
+
+.s_m_btn_admin:hover,
+.s_m_btn_admin:focus{
+    text-decoration: none;
+    color: #528C99;
+    background-color: #FFF;
+}
+
+/*
+    Admin general styles
+*/
+.admin-header {
+    text-align: center;
+    font-size: 20px;
+    height: 100px;
+    line-height: 100px;
+    background-color: #528C99;
+    color: #FFFFFF;
+}
+
+#user-table-holder {
+    margin-top: 50px;
+}
+
+.content-pane {
+    display: none;
+}
+
+#registerForm .form-control-feedback,
+#login-form .form-control-feedback {
+    top: 28px;
+}
+
+#content-panes {
+    float: left;
+    width: 80%;
+}
+
+/*
+    Admin menu styles
+*/
+#admin-menu-holder {
+    border-right: solid 1px #fff;
+    float: left;
+    width: 20%;
+    height: 100%;
+}
+
+
+#admin-menu.init {
+    display: none;
+}
+
+#admin-menu {
+    padding-top: 100px;
+    height: 100%;
+    background-color: #A9C6CC;
+    color: #fff;
+    width: 100%;
+}
+
+#admin-menu ul {
+    width: 100%;
+}
+
+#admin-menu li {
+    width: 100%;
+    padding: 15px 0 15px 15px;
+    border-top: 1px solid #fff;
+}
+
+
+#admin-menu li:hover {
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+#admin-menu li:last-child {
+    border-bottom: 1px solid #fff;
+}
+
+#admin-menu a,
+#admin-menu a:focus,
+#admin-menu a:visited {
+    display: block;
+    color: #fff;
+    width: 100%;
+}
+
+.admin-menu a:hover {
+    text-decoration: none;
 }
