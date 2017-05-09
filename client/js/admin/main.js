@@ -14,6 +14,9 @@ function userManager() {
 				window.location = getBase('redirect') + 'admin'
 			}
 			createUSers(function () {
+				var exportOptions = {
+					columns: [1, 2, 3]
+				};
 				$('#user-table').DataTable({
 					dom: 'Bfrtip',
 					fixedHeader: true,
@@ -30,15 +33,11 @@ function userManager() {
 					buttons: [
 						{
 							extend: 'pdf',
-							exportOptions: {
-								columns: ':visible'
-							}
+							exportOptions: exportOptions
 						},
 						{
 							extend: 'excel',
-							exportOptions: {
-								columns: ':visible'
-							}
+							exportOptions: exportOptions
 						}
 					]
 				});
@@ -50,8 +49,8 @@ function userManager() {
 
 //<editor-fold desc="photo booth manager">
 function photoBootMgr() {
-	return  {
-		init: function() {
+	return {
+		init: function () {
 			console.log('photo boot manager');
 		}
 	}
@@ -61,7 +60,7 @@ function photoBootMgr() {
 //<editor-fold desc="guest book manager">
 function guestBookMgr() {
 	return {
-		init: function() {
+		init: function () {
 			console.log('guestbook manager');
 		}
 	}
@@ -71,6 +70,7 @@ function guestBookMgr() {
 //<editor-fold desc="admin navigation">
 function adminNavigater() {
 	return {
+		animationSpeed: '300',
 		handleReload: function () {
 			var hashLocation = window.location.hash.split('#')[1];
 			if (hashLocation && hashLocation !== '') {
@@ -89,32 +89,43 @@ function adminNavigater() {
 			return contentPaneIds;
 		},
 		switchContent: function (contentId) {
-			this.closeContents();
-			if (!authenticationHandler().hasUser()) {
-				this.openContent('login-block');
-			} else {
-				this.openContent(contentId);
-			}
+			this.closeContents(function (self) {
+				console.log('to');
+				if (!authenticationHandler().hasUser()) {
+					self.openContent('login-block');
+				} else {
+					self.openContent(contentId);
+				}
+			});
 		},
-		closeContents: function () {
-			var openPanes = $('.content-pane');
+		closeContents: function (cb) {
+			var openPanes = $('.content-pane'),
+				self = this;
 			$.each(openPanes, function (index, pane) {
-				$(pane).fadeOut();
-			})
+				$(pane).fadeOut(this.animationSpeed);
+				var id = '#' + pane.id + '-menu';
+				$(id).removeClass('active');
+			});
+			var to = setTimeout(function () {
+				cb(self);
+			}, 400);
 		},
 		openContent: function (contentId) {
 			var menu = $('#admin-menu');
 			if (contentId && contentId !== 'login-block' && this.contentIds().indexOf(contentId) > -1) {
 				if (menu && menu.hasClass('init')) {
-					menu.fadeIn();
+					menu.fadeIn(this.animationSpeed);
 				}
-				$('#' + contentId).fadeIn();
+				var id = '#' + contentId + '-menu';
+				console.log($(id));
+				$(id).addClass('active');
+				$('#' + contentId).fadeIn(this.animationSpeed);
 				initContent(contentId);
 			} else {
 				if (menu) {
-					menu.fadeOut();
+					menu.fadeOut(this.animationSpeed);
 				}
-				$('#login-block').fadeIn();
+				$('#login-block').fadeIn(this.animationSpeed);
 			}
 		}
 	}
@@ -176,6 +187,12 @@ function createUSers(cb) {
 					user.email +
 					'</td>' +
 					'<td>' +
+					'<span class="fa-stack fa-lg user-action" data-action-url="">' +
+					'<i class="fa fa-square-o fa-stack-2x"></i>' +
+					'<i class="fa fa-trash fa-stack-1x"></i>' +
+					'</span>' +
+					'</td>' +
+					'<td>' +
 					user.accessFlag +
 					'</td>' +
 
@@ -206,7 +223,7 @@ function initContent(contentId) {
 	var contentPane = $('#' + contentId);
 	switch (contentId) {
 		case 'user-mgr':
-			if(contentPane.hasClass('init')){
+			if (contentPane.hasClass('init')) {
 				userManager().init();
 				contentPane.removeClass('init');
 			}
