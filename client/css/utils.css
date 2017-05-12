@@ -1,0 +1,54 @@
+/*<editor-fold desc="notifications">*/
+#notifications {
+    position: fixed;
+    top: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.notif {
+    display: none;
+    opacity: 20;
+    cursor: pointer;
+    padding: 0 10px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="popups">*/
+.popup{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 9999;
+}
+/*</editor-fold>*/
+
+/*<editor-fold desc="confirms">*/
+#confirm-panel {
+    width: 400px;
+}
+
+#confirm-panel .panel-heading {
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
+    text-align: center;
+}
+
+#confirm-panel .panel-body {
+    min-height: 200px;
+}
+
+#confirm-panel .panel-buttons {
+    width: 90%;
+    margin: 0 auto;
+    height: 50px;
+}
+/*</editor-fold>*/

@@ -15,8 +15,9 @@ function userManager() {
 			}
 			createUSers(function () {
 				var exportOptions = {
-					columns: [1, 2, 3]
-				};
+						columns: [0, 1, 2]
+					},
+					title = 'Trouw Derutter-Brant';
 				$('#user-table').DataTable({
 					dom: 'Bfrtip',
 					fixedHeader: true,
@@ -28,16 +29,18 @@ function userManager() {
 						//2: lastname
 						//3: email
 						//4: accessflag
-						{targets: [0], visible: false}
+						{}
 					],
 					buttons: [
 						{
 							extend: 'pdf',
-							exportOptions: exportOptions
+							exportOptions: exportOptions,
+							title: title
 						},
 						{
 							extend: 'excel',
-							exportOptions: exportOptions
+							exportOptions: exportOptions,
+							title: title
 						}
 					]
 				});
@@ -90,7 +93,6 @@ function adminNavigater() {
 		},
 		switchContent: function (contentId) {
 			this.closeContents(function (self) {
-				console.log('to');
 				if (!authenticationHandler().hasUser()) {
 					self.openContent('login-block');
 				} else {
@@ -100,7 +102,9 @@ function adminNavigater() {
 		},
 		closeContents: function (cb) {
 			var openPanes = $('.content-pane'),
-				self = this;
+				self = this,
+				headerText = $('#admin-header-text');
+			headerText.fadeOut('slow');
 			$.each(openPanes, function (index, pane) {
 				$(pane).fadeOut(this.animationSpeed);
 				var id = '#' + pane.id + '-menu';
@@ -111,20 +115,40 @@ function adminNavigater() {
 			}, 400);
 		},
 		openContent: function (contentId) {
-			var menu = $('#admin-menu');
+			var menu = $('#admin-menu'),
+				header = $('#admin-header'),
+				headerText = $('#admin-header-text');
 			if (contentId && contentId !== 'login-block' && this.contentIds().indexOf(contentId) > -1) {
+				var title = function () {
+					switch (contentId) {
+						case 'user-mgr':
+							return 'User manager';
+						case 'img-mgr':
+							return 'Photo boot manager';
+						case 'gb-mgr':
+							return 'Guest book manager';
+						default:
+							return '';
+					}
+				};
+				headerText.html(title);
+				headerText.fadeIn(this.animationSpeed);
+
 				if (menu && menu.hasClass('init')) {
 					menu.fadeIn(this.animationSpeed);
+					header.fadeIn(this.animationSpeed);
 				}
 				var id = '#' + contentId + '-menu';
-				console.log($(id));
-				$(id).addClass('active');
-				$('#' + contentId).fadeIn(this.animationSpeed);
-				initContent(contentId);
+				if (!$(id).hasClass('active')) {
+					$(id).addClass('active');
+					$('#' + contentId).fadeIn(this.animationSpeed);
+					initContent(contentId);
+				}
 			} else {
 				if (menu) {
 					menu.fadeOut(this.animationSpeed);
 				}
+				header.fadeOut(this.animationSpeed);
 				$('#login-block').fadeIn(this.animationSpeed);
 			}
 		}
@@ -171,12 +195,17 @@ function createUSers(cb) {
 	$.get(apiUrl, function (data) {
 		if (data) {
 			$.each(data, function (index, user) {
+				var banHidden = '',
+					unbanHidden = '';
+				if (user.accessFlag >= 0) {
+					unbanHidden = 'toShow';
+				} else {
+					banHidden = 'toShow';
+				}
+
 				var row =
 					'<tr>' +
 
-					'<td>' +
-					user._id +
-					'</td>' +
 					'<td>' +
 					user.firstName +
 					'</td>' +
@@ -186,14 +215,18 @@ function createUSers(cb) {
 					'<td>' +
 					user.email +
 					'</td>' +
-					'<td>' +
-					'<span class="fa-stack fa-lg user-action" data-action-url="">' +
-					'<i class="fa fa-square-o fa-stack-2x"></i>' +
-					'<i class="fa fa-trash fa-stack-1x"></i>' +
+					'<td data-id="user._id">' +
+
+					'<span class="fa-stack fa-lg admin-action-btn ' + banHidden + '" + data-admin-action="ban-user">' +
+					'<i class="fa fa-square-o fa-stack-2x text-danger"></i>' +
+					'<i class="fa fa-ban fa-stack-1x text-danger"></i>' +
 					'</span>' +
-					'</td>' +
-					'<td>' +
-					user.accessFlag +
+
+					'<span class="fa-stack fa-lg admin-action-btn ' + unbanHidden + '" +  data-admin-action="unban-user">' +
+					'<i class="fa fa-square-o fa-stack-2x text-success"></i>' +
+					'<i class="fa fa-play fa-stack-1x text-success"></i>' +
+					'</span>' +
+
 					'</td>' +
 
 					'</tr>';
@@ -219,6 +252,14 @@ function setMenuListeners() {
 	});
 }
 
+function setAdminListeners() {
+	setMenuListeners();
+
+	$('#user-table').on('click', '.admin-action-btn', function () {
+		alert('TODO ADD HANDLER');
+	})
+}
+
 function initContent(contentId) {
 	var contentPane = $('#' + contentId);
 	switch (contentId) {
@@ -232,6 +273,6 @@ function initContent(contentId) {
 //</editor-fold>
 
 //<editor-fold desc="INIT">
-setMenuListeners();
+setAdminListeners();
 adminNavigater().handleReload();
 //</editor-fold>

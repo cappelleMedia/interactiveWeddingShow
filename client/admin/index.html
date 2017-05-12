@@ -52,9 +52,10 @@
 	<!--</editor-fold>-->
 	
 	<!--<editor-fold desc="custom stylesheets">-->
-	<link rel="stylesheet" href="css/forms.css">
 	<link rel="stylesheet" href="css/main.css">
 	<link rel="stylesheet" href="css/admin/main.css">
+	<link rel="stylesheet" href="css/forms.css">
+	<link rel="stylesheet" href="css/utils.css">
 	<!--</editor-fold>-->
 </head>
 
@@ -63,6 +64,24 @@
 <div id="notifications" class="">
 
 </div>
+<!--</editor-fold>-->
+
+<!--<editor-fold desc="confirms">-->
+	<div id="confirm-panel" class="toShow popup">
+		<div class="panel panel-danger">
+			<div id="confirm-head" class="panel-heading">
+			</div>
+			<div id="confirm-msg" class="panel-body">
+			</div>
+			<div class="panel-buttons">
+				<div class="btn-group btn-group-justified">
+					<div id="confirm-pos" class="btn btn-default"></div>
+					<div id="confirm-neg" class="btn btn-default hidden"></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
 <!--</editor-fold>-->
 
 <!--<editor-fold desc="menu">-->
@@ -80,14 +99,14 @@
 				<a href="#img-mgr" id="img-mgr-menu"
 				   class="admin-menu-item" data-target="img-mgr">
 					<i class="fa fa-fw fa-camera"></i>
-					<span class="amt"> Photo Booth Manager</span>
+					<span class="amt"> Photo Manager</span>
 				</a>
 			</li>
 			<li>
 				<a href="#gb-mgr" id="gb-mgr-menu"
 				   class="admin-menu-item" data-target="gb-mgr">
 					<i class="fa fa-fw fa-book"></i>
-					<span class="amt"> Guest Book Manager</span>
+					<span class="amt"> Guest Book Mgr</span>
 				</a>
 			</li>
 		</ul>
@@ -153,21 +172,25 @@
 	</div>
 	<!--</editor-fold>-->
 	
+	<!--<editor-fold desc="header-pane">-->
+	<div id="admin-header" class="admin-header toShow">
+		<span id="admin-header-text"></span>
+	</div>
+	<!--</editor-fold>-->
+	
 	<!--<editor-fold desc="user manager">-->
 	<div id="user-mgr" class="content-pane init">
-		<div id="users-header" class="admin-header">
-			USER MANAGER
+		<div class="user-update toShow">
+			user updateform here
 		</div>
-		<div id="user-table-holder" class="col-md-8 col-md-offset-2">
+		<div id="user-table-holder" class="col-xs-12 ">
 			<table id="user-table" class="table table-responsive table-hover">
 				<thead>
 				<tr>
-					<th>ID</th>
 					<th>Voornaam</th>
 					<th>Achternaam</th>
 					<th>Email</th>
 					<th>Acties</th>
-					<th>Niveau</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -179,17 +202,11 @@
 	
 	<!--<editor-fold desc="Photo boot mgr">-->
 	<div id="img-mgr" class="content-pane init">
-		<div id="img-header" class="admin-header">
-			PHOTO BOOT MANAGER
-		</div>
 	</div>
 	<!--</editor-fold>-->
 	
 	<!--<editor-fold desc="Guest book mgr">-->
 	<div id="gb-mgr" class="content-pane init">
-		<div id="gb-header" class="admin-header">
-			PHOTO BOOT MANAGER
-		</div>
 	</div>
 	<!--</editor-fold>-->
 

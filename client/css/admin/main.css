@@ -1,11 +1,10 @@
-/*
-    login styles
-*/
+/*<editor-fold desc="login styles">*/
 #login-panel {
     position: relative;
 }
 
 #login-block {
+    padding-left:0;
     position: absolute;
     width: 300px;
     border: 2px solid #528C99;
@@ -36,10 +35,9 @@
     color: #528C99;
 }
 
-/*
-    Admin button styles
-*/
+/*</editor-fold>*/
 
+/*<editor-fold desc="Admin button styles">*/
 .s_m_btn_admin {
     background-color: #528C99;
     border: 1px #528C99 solid;
@@ -56,44 +54,13 @@
     background-color: #FFF;
 }
 
-/*
-    Admin general styles
-*/
-.admin-header {
-    text-align: center;
-    font-size: 20px;
-    height: 100px;
-    line-height: 100px;
-    background-color: #528C99;
-    color: #FFFFFF;
-}
+/*</editor-fold>*/
 
-#user-table-holder {
-    margin-top: 50px;
-}
-
-.content-pane {
-    display: none;
-}
-
-#registerForm .form-control-feedback,
-#login-form .form-control-feedback {
-    top: 28px;
-}
-
-#content-panes {
-    float: left;
-    width: 80%;
-}
-
-/*
-    Admin menu styles
-*/
+/*<editor-fold desc="Admin menu styles">*/
 #admin-menu-holder {
-    border-right: solid 1px #fff;
-    float: left;
-    width: 20%;
+    position: fixed;
     height: 100%;
+    width: 200px;
 }
 
 #admin-menu.init {
@@ -101,7 +68,7 @@
 }
 
 #admin-menu {
-    padding-top: 100px;
+    margin-top: 100px;
     height: 100%;
     background-color: #A9C6CC;
     color: #fff;
@@ -133,11 +100,97 @@
     text-decoration: none;
 }
 
-#admin-menu a:hover{
-    text-decoration: none;
-    padding-left: 50px;
+#admin-menu a:hover {
+    /*background-color: #fff;*/
+    color: #528C99;
 }
 
 #admin-menu a.active {
-    color: #4A7F89;
+    background-color: #528C99;
 }
+
+#admin-menu a.active:hover {
+    color: #FFFFFF;
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="Admin general styles">*/
+.text-orange {
+    color: #FFA500;
+}
+
+.toShow {
+    display: none;
+}
+
+.admin-header {
+    text-align: center;
+    font-size: 20px;
+    height: 100px;
+    line-height: 100px;
+    background-color: #528C99;
+    color: #FFFFFF;
+}
+
+#user-table-holder {
+    margin-top: 50px;
+}
+
+#content-panes {
+    width: 100%;
+}
+
+.content-pane {
+    display: none;
+    padding-left: 200px;
+}
+
+#registerForm .form-control-feedback,
+#login-form .form-control-feedback {
+    top: 28px;
+}
+
+.admin-action-btn {
+    cursor: pointer;
+}
+
+.admin-action-btn:hover .fa-stack-1x {
+    -webkit-transition: all 600ms;
+    -moz-transition: all 600ms;
+    -ms-transition: all 600ms;
+    -o-transition: all 600ms;
+    transition: all 600ms;
+    -webkit-transform: rotate(360deg);;
+    -moz-transform: rotate(360deg);;
+    -ms-transform: rotate(360deg);;
+    -o-transform: rotate(360deg);;
+    transform: rotate(360deg);;
+}
+
+/*</editor-fold>*/
+
+/*<editor-fold desc="media queries">*/
+@media all and (max-width: 1100px) {
+    #admin-menu a {
+        font-size: 0.9em;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    #admin-menu-holder {
+    }
+
+    #admin-menu span {
+        display: none;
+    }
+
+    #admin-menu a {
+        font-size: 1em;
+        padding: 0;
+        text-align: center;
+    }
+
+}
+
+/*</editor-fold>*/
