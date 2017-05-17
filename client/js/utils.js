@@ -3,6 +3,9 @@
  */
 
 //<editor-fold desc="Globals">
+var defaultAnimationSpeedShort = 300,
+	defaultAnimationSpeedMedium = 500,
+	defaultAnimationSpeedLong = 800;
 
 
 function getHost(type) {
@@ -91,6 +94,65 @@ function showConfirmPanel(heading, msg, confirm, adtionUrl, cancel, time) {
 
 	}
 }
+//</editor-fold>
 
+//<editor-fold desc="popup">
+function popups() {
+	return {
+		createPopup: function (id, w, h, type, content, confirmBtn, triggerClass, destroyOnClose, cancelBtn, autoCloseTime) {
+			setPopupListeners();
+			var dimensionsClasses = getDimensions(w, h);
+			var popup = new EJS({url: 'js/templates/popup.ejs'}).render({
+				id: id,
+				dimensionsClass: dimensionsClasses,
+				type: type,
+				content: content,
+				destroyOnClose: destroyOnClose ? 'destroy' : '',
+				confirmBtn: confirmBtn,
+				triggerClass: triggerClass,
+				cancelBtn: cancelBtn,
+				autoCloseTime: autoCloseTime
+			});
+			$('#popups').append(popup).fadeIn();
+			$('#' + id).fadeIn(defaultAnimationSpeedShort);
+		}
+	};
+
+	function getDimensions(w, h) {
+		var widthClass = function () {
+			switch (w) {
+				case 'large':
+					return 'col-sm-11';
+				case 'medium':
+					return 'col-sm-8';
+				case 'small':
+					return 'col-sm-6';
+				default:
+					return w;
+			}
+		}, heightClass = function () {
+			switch (h) {
+				case 'large':
+					return 'h-90';
+				case 'medium':
+					return 'h-60';
+				case 'small':
+					return 'h-50';
+				default:
+					return h;
+			}
+		};
+		return widthClass() + ' col-xs-11 ' + heightClass();
+	}
+
+	function setPopupListeners() {
+		$('#popups').on('click', '.close-btn', function (e) {
+			$(this.parentElement).fadeOut()
+			if($(this).hasClass('destroy')){
+				$(this).parent().remove();
+			}
+		})
+	}
+}
 //</editor-fold>
 

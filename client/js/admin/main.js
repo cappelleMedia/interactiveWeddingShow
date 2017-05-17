@@ -51,10 +51,10 @@ function userManager() {
 //</editor-fold>
 
 //<editor-fold desc="photo booth manager">
-function photoBootMgr() {
+function photoBoothMgr() {
 	return {
 		init: function () {
-			console.log('photo boot manager');
+			console.log('photo booth manager');
 		}
 	}
 }
@@ -104,7 +104,7 @@ function adminNavigater() {
 			var openPanes = $('.content-pane'),
 				self = this,
 				headerText = $('#admin-header-text');
-			headerText.fadeOut('slow');
+			headerText.fadeOut(this.animationSpeed);
 			$.each(openPanes, function (index, pane) {
 				$(pane).fadeOut(this.animationSpeed);
 				var id = '#' + pane.id + '-menu';
@@ -124,7 +124,7 @@ function adminNavigater() {
 						case 'user-mgr':
 							return 'User manager';
 						case 'img-mgr':
-							return 'Photo boot manager';
+							return 'Photo booth manager';
 						case 'gb-mgr':
 							return 'Guest book manager';
 						default:
@@ -189,7 +189,6 @@ function authenticationHandler() {
 //<editor-fold desc="functions">
 function createUSers(cb) {
 	var apiUrl = getBase('api') + 'users/',
-		users = {},
 		html = '';
 
 	$.get(apiUrl, function (data) {

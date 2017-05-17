@@ -1,0 +1,13 @@
+<div id="<%= id %>" class="toShow popup <%= dimensionsClass %> <%= type %>">
+    <div class="close-btn <%= destroyOnClose%>"><i class="fa fa-times fa-lg "></i></div>
+    <div class="content">
+        <%= content %>
+    </div>
+    <div class="buttons">
+        <% if (confirmBtn) { %>
+        <div class="popup-btn btn btn-primary pull-right <%= triggerClass%>">
+            <%= confirmBtn %>
+        </div>
+        <% } %>
+    </div>
+</div>

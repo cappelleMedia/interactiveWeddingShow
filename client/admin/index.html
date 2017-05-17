@@ -67,7 +67,7 @@
 <!--</editor-fold>-->
 
 <!--<editor-fold desc="confirms">-->
-	<div id="confirm-panel" class="toShow popup">
+	<div id="confirm-panel" class="toShow popup small">
 		<div class="panel panel-danger">
 			<div id="confirm-head" class="panel-heading">
 			</div>
@@ -122,15 +122,16 @@
 			Login to the admin portal
 		</div>
 		<div id="login-body">
-			<form id="login-form" class="s_m_form">
+			<form id="adminLoginForm" class="s_m_form">
 				<div class="form-group form-filter hidden">
-					<label for="input-filter">Niet invullen</label>
+					<label for="input-filter-adminLogin">Niet invullen</label>
 					<div class="form-group input-group">
 						<span class="input-group-addon"><i class="fa fa-ban"></i></span>
-						<input autofocus type="text" class="form-control" id="input-filter" name="input-filter"
+						<input autofocus type="text" class="form-control" id="input-filter-adminLogin" name="input-filter-adminLogin"
 							   placeholder="Are you a robot?">
 					</div>
 				</div>
+				
 				<div class="form-group has-feedback form-group-sm">
 					<label for="email">
 						Email:
@@ -164,7 +165,7 @@
 					<div id="password-error-message" class="error-message text-danger"></div>
 				</div>
 				
-				<a href="#" id="formSubmit" class="s_m_btn_admin" data-target="adminLogin">
+				<a href="#" id="adminLoginFormSubmit" class="s_m_btn_admin formSubmit" data-target="adminLogin">
 					Aanmelden
 				</a>
 			</form>

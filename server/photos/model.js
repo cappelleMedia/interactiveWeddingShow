@@ -15,6 +15,10 @@ let PhotoSchema = new mongoose.Schema({
         required: true,
         index: true
     },
+    url: {
+       type: String,
+        required: true
+    },
     description: {
         type: String,
         required: true

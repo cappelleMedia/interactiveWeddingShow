@@ -16,15 +16,26 @@ class PhotoController extends BaseController {
 	}
 
 	uploadPic(formData, callback) {
-		let errors = '';
-		let form = new formidable.IncomingForm();
-		let self = this;
+		let errors = '',
+			form = new formidable.IncomingForm(),
+			toSchema = {
+				poster: '',
+				url: '',
+				description: ''
+			},
+			self = this;
 		form.uploadDir = path.join(config.basepaths.root, 'client', config.basepaths.img);
 
 		form.onPart = function (part) {
-			if (part.name === 'file') {
-				if (part.mime === 'application/octet-stream') {
-					errors = 'File was empty';
+			if (part.name === 'photo') {
+				if (part.mime === 'application/octet-stream' || !part.filename) {
+					errors = 'File empty';
+
+				}
+				if (!part.filename.match(/\.(jpg|jpeg|png)$/i) || !part.mime.match('image.*')) {
+					errors = 'Invalid file';
+				}
+				if (errors) {
 					form.emit('error', new Error(errors));
 					return;
 				}
@@ -33,9 +44,22 @@ class PhotoController extends BaseController {
 		};
 
 		form.on('file', function (field, file) {
-			if (file.size >= 0) {
-				fs.rename(file.path, form.uploadDir + "/" + file.name);
+			if (file.size <= 0) {
+				errors = 'File empty';
 			}
+			if (file.size > 4000000) {
+				errors = 'File to large';
+			}
+			if (errors) {
+				form.emit('error', new Error(errors));
+				return;
+			}
+			var pre = '';
+			if (fs.existsSync(form.uploadDir + "/" + file.name)) {
+				pre = new Date().getTime();
+			}
+			var name = fs.rename(file.path, form.uploadDir + "/" + pre + file.name);
+			toSchema.url = pre + file.name;
 		});
 
 		form.on('error', function (err) {
@@ -43,17 +67,10 @@ class PhotoController extends BaseController {
 			return;
 		});
 
-		form.on('end', function () {
-			if (!errors) {
-				callback(null, 200, errors);
-			}
-		});
-
 		form.parse(formData, function (err, fields, files) {
-			console.log(files.file);
-			_.each(fields, function(field){
-				console.log(field);
-			});
+			toSchema.poster = fields.uploader;
+			toSchema.description = fields.description;
+			self.addObj(toSchema, callback);
 		});
 
 	}

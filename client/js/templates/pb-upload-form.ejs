@@ -1,0 +1,58 @@
+<div id="photo-form-holder" class="col-md-6 col-md-offset-3">
+    <form class="s_m_form" id="photoUploadForm" method="POST" action="#" autocomplete="off">
+        <div class="toShow" id="photo-form-errors">
+            <div id="photo-form-main-error" class="alert alert-danger">
+
+            </div>
+        </div>
+        <div class="form-group form-filter hidden">
+            <label for="input-filter-photoUpload">Niet invullen</label>
+            <div class="form-group input-group">
+                <span class="input-group-addon"><i class="fa fa-ban"></i></span>
+                <input autofocus type="text" class="form-control" id="input-filter-photoUpload"
+                       name="input-filter-photoUpload"
+                       placeholder="Are you a robot?">
+            </div>
+        </div>
+        <div class="form-group has-feedback form-group-sm">
+            <label for="naam">
+                Naam:
+            </label>
+            <input type="text" class="form-control validation-candidate"
+                   data-validation-type="not-empty"
+                   id="naam" name="naam"
+                   placeholder="Vul hier je naam in"
+                   required>
+            <div class="form-control-feedback">
+                <i id="naam-feedback-icon" class="fa"></i>
+            </div>
+            <div id="naam-error-message" class="error-message text-danger"></div>
+        </div>
+        <div class="form-group has-feedback form-group-sm">
+            <label for="omschrijving">
+                Omschrijving
+            </label>
+            <input type="text" class="form-control validation-candidate"
+                   data-validation-type="not-empty"
+                   id="omschrijving" name="omschrijving"
+                   placeholder="Omschrijf kort de foto"
+                   required>
+            <div class="form-control-feedback">
+                <i id="omschrijving-feedback-icon" class="fa"></i>
+            </div>
+            <div id="omschrijving-error-message" class="error-message text-danger"></div>
+        </div>
+        <div class="form-group">
+            <div class="btn btn-primary form-control file-trigger">Bestand kiezen..</div>
+            <input type="file" class="hidden"
+                   id="pb-upload-file" name="pb-upload-file"
+                   required accept="image/*">
+        </div>
+        <div id="pb-upload-preview" class="col-sm-4 col-sm-offset-4">
+            <img src="" alt="Geen bestand gekozen">
+        </div>
+    </form>
+    <div id="pb-upload-preview-spinner" class="toShow text-center">
+        <i class="fa fa-refresh fa-spin fa-4x"></i>
+    </div>
+</div>

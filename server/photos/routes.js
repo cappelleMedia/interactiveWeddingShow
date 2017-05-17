@@ -10,7 +10,8 @@ module.exports = function (app, base) {
 	app.post(base, function (req, res) {
 		if (req.headers['content-type'].indexOf('multipart/form-data') !== 0) {
 			helper.respond('Not a multipart form', 500, res, 'Not a multipart form');
-		} else {
+		}
+		else {
 			controller.uploadPic(req, function (err, response, validationResult) {
 				helper.respond(err, response, res, validationResult);
 			});

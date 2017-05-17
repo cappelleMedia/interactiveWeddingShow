@@ -61,6 +61,13 @@
 </head>
 
 <body class="box box-100">
+
+<!--<editor-fold desc="loading">-->
+<div id="loading" class="toShow">
+	<i class="fa fa-spinner fa-pulse fa-spin fa-4x"></i>
+</div>
+<!--</editor-fold>-->
+
 <!--<editor-fold desc="Clock">-->
 <div id="clock-holder" class="menu-item col-md-6 col-md-offset-3 col-xs-12 pretty-text">
 	<h1 class="heading">
@@ -128,10 +135,11 @@
 				</div>
 			</div>
 			<div class="form-group form-filter hidden">
-				<label for="input-filter">Niet invullen</label>
+				<label for="input-filter-register">Niet invullen</label>
 				<div class="form-group input-group">
 					<span class="input-group-addon"><i class="fa fa-ban"></i></span>
-					<input autofocus type="text" class="form-control" id="input-filter" name="input-filter"
+					<input autofocus type="text" class="form-control" id="input-filter-register"
+						   name="input-filter-register"
 						   placeholder="Are you a robot?">
 				</div>
 			</div>
@@ -201,7 +209,7 @@
 							<span class="small-text">Persoon toevoegen</span>
 						</a>
 					</div>
-					<a href="#" id="formSubmit" class="s_m_btn" data-target="register">
+					<a href="#" id="registerFormSubmit" class="s_m_btn formSubmit" data-target="register">
 						I Do
 					</a>
 				</div>
@@ -298,19 +306,44 @@
 </div>
 <!--</editor-fold>-->
 
-<!--<editor-fold desc="photoboot">-->
-<div id="photoboot-menu" class="menu-item col-md-6 col-md-offset-3 col-xs-12" data-target="photoboot">
+<!--<editor-fold desc="photobooth">-->
+<div id="photobooth-menu" class="menu-item col-md-6 col-md-offset-3 col-xs-12" data-target="photobooth">
 	<div class="menu-text col-xs-12">
-		???
+		Photo Booth
 	</div>
 	<div class="menu-close">
 		<i class="fa fa-window-close"></i>
 	</div>
 </div>
-<div id="photoboot" class="col-md-6 col-md-offset-3 content-box scrollBox">
-	Will be revealed on W-day!
+<div id="photobooth" class="col-md-6 col-md-offset-3 content-box scrollBox">
+	<!--<editor-fold desc="photobooth controls">-->
+	<div id="photoBooth-controls" class="">
+		
+		<a href="" class="fa-stack fa-lg upload-picture-trigger" data-upload-type="file">
+			<i class="fa fa-circle fa-stack-2x"></i>
+			<i class="fa fa-upload fa-stack-1x"></i>
+		</a>
+		<a href="" class="fa-stack fa-lg upload-picture-trigger" data-upload-type="camera">
+			<i class="fa fa-circle fa-stack-2x"></i>
+			<i class="fa fa-camera fa-stack-1x"></i>
+		</a>
+		<a href="" class="fa-stack fa-lg photo-boot-info-trigger">
+			<i class="fa fa-circle fa-stack-2x"></i>
+			<i class="fa fa-question fa-stack-1x"></i>
+		</a>
+	</div>
+	<!--</editor-fold>-->
+	
+	<!--<editor-fold desc="gallery">-->
+	<div id="photoBoothGallery" class="justified-gallery">
+	
+	</div>
+	
+	<div id="image-loader" class="toShow">
+		<i class="fa fa-refresh fa-spin"></i>
+	</div>
+	<!--</editor-fold>-->
 </div>
-<!--</editor-fold>-->
 
 <!--<editor-fold desc="guestbook">-->
 <div id="guestbook-menu" class="menu-item col-md-6 col-md-offset-3 col-xs-12" data-target="guestbook">
@@ -325,10 +358,17 @@
 	Will be revealed on W-day!
 </div>
 <!--</editor-fold>-->
-</div>
 
 <!--<editor-fold desc="Notifications">-->
-<div id="notifications" class="">
+<div id="notifications">
+
+</div>
+<!--</editor-fold>-->
+
+<!--<editor-fold desc="popup">-->
+<div id="popups">
+</div>
+
 
 </div>
 <!--</editor-fold>-->
@@ -346,14 +386,79 @@
 <script src="lib/nicescroll/jquery.nicescroll.min.js"></script>
 <script src="lib/ejs/ejs_production.js"></script>
 <script src="lib/cookie/js.cookie.js"></script>
+<script src="lib/justifiedGallery/jquery.justifiedGallery.min.js"></script>
+
 <!--</editor-fold>-->
 <!--<editor-fold desc="custom scripts">-->
-<script src="js/main.js"></script>
-<script src="js/menu.js"></script>
-<script src="js/countdown.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/forms.js"></script>
+<script src="js/countdown.js"></script>
+<script src="js/photoBooth.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/main.js"></script>
 <!--</editor-fold>-->
 <!--</editor-fold>-->
 </body>
+
+<head>
+	<script type="text/javascript">
+		var host = document.location.host;
+		if (host.indexOf('localhost') === 0) {
+			host += '/interactiveWeddingShow/client';
+		}
+		var base = 'http://' + host + '/';
+		document.write('<base href="' + base + '"/>');
+	</script>
+	<!--<editor-fold desc="meta">-->
+	<meta charset="UTF-8">
+	<meta name="fragment" content="!">
+	<meta name="description" content="Trouw website Sarah en Mathias">
+	<meta name="keywords" content="Trouw, Sarah, Mathias, Marriage, Wedding">
+	<meta name="author" content="Cappelle-Media">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--</editor-fold>-->
+	
+	<!--<editor-fold desc="favicon">-->
+	<link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+	<link rel="manifest" href="assets/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<!--</editor-fold>-->
+	
+	<title>Trouw Sarah en Mathias</title>
+	
+	<!--<editor-fold desc="fonts">-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<!--</editor-fold>-->
+	
+	<!--<editor-fold desc="stylesheets">-->
+	<link rel="stylesheet" href="css/html5reset.css">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="lib/justifiedGallery/justifiedGallery.min.css">
+	
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/countdown.css">
+	<link rel="stylesheet" href="css/menu.css">
+	<link rel="stylesheet" href="css/forms.css">
+	<link rel="stylesheet" href="css/utils.css">
+	<link rel="stylesheet" href="css/photobooth.css">
+	<!--</editor-fold>-->
+</head>
 </html>

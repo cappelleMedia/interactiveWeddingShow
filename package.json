@@ -33,6 +33,7 @@
     "mongoose": "^4.6.3",
     "mongoose-beautiful-unique-validation": "^5.1.1",
     "mongoose-simple-random": "^0.3.3",
+    "node-thumbnail": "^0.11.0",
     "socket.io": "^1.5.1",
     "validator": "^6.1.0",
     "winston": "^2.3.0",

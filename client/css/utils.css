@@ -19,20 +19,70 @@
 /*</editor-fold>*/
 
 /*<editor-fold desc="popups">*/
-.popup{
+.popup {
     position: fixed;
+    z-index: 9999;
     left: 50%;
     top: 50%;
-
     transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    border: 2px solid;
+    overflow: hidden;
 
-    z-index: 9999;
+}
+
+.popup.info {
+    border-color:#70a7dc;
+    color: #70a7dc;
+}
+
+.popup.h-90 {
+    height: 90%;
+}
+
+.popup.medium {
+    width: 500px;
+    height: 90%;
+}
+
+.popup.small {
+    width: 400px;
+}
+
+.popup > .close-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    z-index: 999;
+    background-color: #fff;
+}
+.popup > .close-btn .fa-times:hover {
+    cursor: pointer;
+}
+
+.popup > .content {
+    height:100%;
+    padding: 0 30px 50px 10px;
+    overflow-x: auto;
+}
+
+.popup .buttons {
+    background-color: #FFFFFF;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    height: 50px;
+    z-index: 99;
+    padding: 10px 40px;
 }
 /*</editor-fold>*/
 
 /*<editor-fold desc="confirms">*/
 #confirm-panel {
-    width: 400px;
+
 }
 
 #confirm-panel .panel-heading {
@@ -51,4 +101,50 @@
     margin: 0 auto;
     height: 50px;
 }
+
+/*</editor-fold>*/
+
+
+/*<editor-fold desc="small important">*/
+.toShow {
+    display: none;
+}
+#loading {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    position: fixed;
+    z-index: 999;
+}
+#loading i {
+    color: #FFF;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/*</editor-fold>*/
+
+
+/*<editor-fold desc="spinner">*/
+@-webkit-keyframes spinnerRotate
+{
+    from{-webkit-transform:rotate(0deg);}
+    to{-webkit-transform:rotate(360deg);}
+}
+@-moz-keyframes spinnerRotate
+{
+    from{-moz-transform:rotate(0deg);}
+    to{-moz-transform:rotate(360deg);}
+}
+@-ms-keyframes spinnerRotate
+{
+    from{-ms-transform:rotate(0deg);}
+    to{-ms-transform:rotate(360deg);}
+}
+
+.fa-spin {
+    line-height:normal;
+}
+
 /*</editor-fold>*/

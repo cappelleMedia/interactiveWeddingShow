@@ -2,7 +2,7 @@
 server/config
 
 #assets
-client/assets/images/photoboot
+client/assets/images/photobooth
 
 #Ide
 .idea

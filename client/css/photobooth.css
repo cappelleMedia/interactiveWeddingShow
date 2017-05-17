@@ -1,0 +1,27 @@
+#photoBooth-controls a .fa-stack-1x {
+    color: #FFA7A4;
+}
+
+#photoBooth-controls a .fa-stack-2x {
+    color: #FFC8C7;
+}
+
+#photoBooth-controls a:hover .fa-stack-2x {
+    opacity: .5;
+}
+
+#photoBoothInfo li:first-child {
+    border-top: 1px solid rgba(112, 167, 220, .3);
+}
+
+#photoBoothInfo li{
+    padding: 10px;
+    border-bottom: 1px solid rgba(112, 167, 220, .3);
+}
+
+#pb-upload-preview img {
+    display: block;
+    height:auto;
+    text-align: center;
+    width: 100%;
+}

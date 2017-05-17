@@ -3,7 +3,8 @@
     font-size: 18px;
 }
 
-#form-holder {
+#form-holder,
+#photo-form-holder{
     height: 100%;
 }
 
@@ -126,11 +127,11 @@ p.s_m_radio.s_m_radio-val .small-text {
 }
 
 #registerForm .icon-btn,
-#formSubmit.s_m_btn {
+.formSubmit.s_m_btn {
     margin-top: 10px;
 }
 
-#formSubmit.s_m_btn {
+.formSubmit.s_m_btn {
     width: 100%;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
@@ -141,8 +142,7 @@ p.s_m_radio.s_m_radio-val .small-text {
     margin-bottom: 20px;
 }
 
-#registerForm .form-control-feedback,
-#login-form .form-control-feedback {
+.s_m_form .form-group.has-feedback .form-control-feedback {
     top: 30px;
 }
 

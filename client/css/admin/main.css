@@ -147,7 +147,7 @@
 }
 
 #registerForm .form-control-feedback,
-#login-form .form-control-feedback {
+#adminLoginForm .form-control-feedback {
     top: 28px;
 }
 
@@ -179,6 +179,7 @@
 
 @media all and (max-width: 1000px) {
     #admin-menu-holder {
+        width: 50px;
     }
 
     #admin-menu span {
@@ -189,6 +190,10 @@
         font-size: 1em;
         padding: 0;
         text-align: center;
+    }
+
+    .content-pane {
+        padding-left: 50px;
     }
 
 }

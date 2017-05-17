@@ -32,20 +32,21 @@ function setFormListeners() {
 		}
 	});
 
-	$('#formSubmit').on('click', function (e) {
+	$('body').on('click', '.formSubmit',function (e) {
 		e.preventDefault();
 		prepareForSubmit($(this));
 	});
 
-	$('.s_m_form').on('blur', '.validation-candidate', function () {
+	$('body').on('blur', '.s_m_form .validation-candidate', function () {
 		validateField(this);
 	});
 
-	$('.s_m_form').on('keypress', function (e) {
+	$('body').on('keypress','.s_m_form', function (e) {
 		var keyCode = e.which || e.keyCode;
 		if (keyCode == 13) {
 			e.preventDefault();
-			$('#formSubmit').click();
+			var submitBtn = $('#' + this.id + ' .formSubmit');
+			submitBtn.click();
 		}
 	});
 }
@@ -83,11 +84,13 @@ function setInvalid(el, valid) {
 	$('#' + errorMsg).html(valid.replace('{placeholder}', errorFieldName));
 }
 
-function validateForm() {
-	if (document.getElementById('input-filter').value) {
+function validateForm(callerTarget) {
+	var filterId = 'input-filter-' + callerTarget;
+	if (document.getElementById(filterId).value) {
 		return;
 	}
-	var fields = $('.validation-candidate'),
+	var fieldsSelector = '#' + callerTarget + 'Form .validation-candidate';
+	var fields = $(fieldsSelector),
 		isValid = true;
 
 	_.each(fields, function (field) {
@@ -99,17 +102,17 @@ function validateForm() {
 }
 
 function prepareForSubmit(caller) {
-	if (!validateForm()) {
+	var callerTarget = $(caller).data('target');
+	if (!validateForm(callerTarget)) {
 		return;
 	}
-	var callerTarget = $(caller).data('target');
 	switch (callerTarget) {
 		case 'register':
 			return prepareRegisterForm();
 		case 'adminLogin' :
 			return sendAdminLoginForm();
 		default:
-			return;
+			return true;
 	}
 }
 
