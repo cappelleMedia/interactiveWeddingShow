@@ -133,7 +133,7 @@
     color: #FFFFFF;
 }
 
-#user-table-holder {
+.admin-table-holder {
     margin-top: 50px;
 }
 
@@ -168,6 +168,12 @@
     transform: rotate(360deg);;
 }
 
+/*</editor-fold>*/
+
+/*<editor-fold desc="photobooth mgr styles">*/
+.tb-img {
+    width: 50px;
+}
 /*</editor-fold>*/
 
 /*<editor-fold desc="media queries">*/

@@ -4,6 +4,7 @@
 
 //<editor-fold desc="globals">
 var contentPaneIds = [];
+var mainImages = [];
 //</editor-fold>
 
 //<editor-fold desc="userManager">
@@ -47,16 +48,150 @@ function userManager() {
 			});
 		}
 	}
+	function createUSers(cb) {
+		var apiUrl = getBase('api') + 'users/',
+			html = '';
+
+		$.get(apiUrl, function (data) {
+			if (data) {
+				$.each(data, function (index, user) {
+					var banHidden = '',
+						unbanHidden = '';
+					if (user.accessFlag >= 0) {
+						unbanHidden = 'toShow';
+					} else {
+						banHidden = 'toShow';
+					}
+
+					var row =
+						'<tr>' +
+
+						'<td>' +
+						user.firstName +
+						'</td>' +
+						'<td>' +
+						user.lastName +
+						'</td>' +
+						'<td>' +
+						user.email +
+						'</td>' +
+						'<td data-id="user._id">' +
+
+						'<span class="fa-stack fa-lg admin-action-btn ' + banHidden + '" + data-admin-action="ban-user">' +
+						'<i class="fa fa-square-o fa-stack-2x text-danger"></i>' +
+						'<i class="fa fa-ban fa-stack-1x text-danger"></i>' +
+						'</span>' +
+
+						'<span class="fa-stack fa-lg admin-action-btn ' + unbanHidden + '" +  data-admin-action="unban-user">' +
+						'<i class="fa fa-square-o fa-stack-2x text-success"></i>' +
+						'<i class="fa fa-play fa-stack-1x text-success"></i>' +
+						'</span>' +
+
+						'</td>' +
+
+						'</tr>';
+					html += row;
+				});
+				$('#user-table tbody').append(html);
+				cb();
+			}
+		});
+	}
 }
 //</editor-fold>
 
 //<editor-fold desc="photo booth manager">
 function photoBoothMgr() {
+	var apiUrl = getBase('api') + 'photos/';
 	return {
 		init: function () {
-			console.log('photo booth manager');
+			this.createPicTable(function () {
+				$('#img-table').DataTable({
+					fixedHeader: true,
+					colReorder: true,
+					responsive: true,
+				});
+			});
+		},
+		createPicTable: function (cb) {
+			var baseImgUrl = 'assets/images/photobooth/',
+				html = '';
+
+			$.get(apiUrl, function (data) {
+				if (data) {
+					mainImages = data;
+					$.each(data, function (index, image) {
+						var url = baseImgUrl + image.url,
+							caption = image.description + ' - ' + image.poster;
+
+						var banHidden = '',
+							unbanHidden = '';
+						if (!image.blocked) {
+							unbanHidden = 'toShow';
+						} else {
+							banHidden = 'toShow';
+						}
+
+						var imgEl = '<img alt="' + caption + '" class="tb-img" src="' + url + '"/>';
+
+
+						var row =
+							'<tr data>' +
+
+							'<td>' +
+							imgEl +
+							'</td>' +
+							'<td>' +
+							image.poster +
+							'</td>' +
+							'<td>' +
+							image.posted +
+							'</td>' +
+							'<td>' +
+
+							'<span class="fa-stack fa-lg admin-action-btn ' + banHidden + '" + data-admin-action="block_image" data-id="' + image._id + '">' +
+							'<i class="fa fa-square-o fa-stack-2x text-danger"></i>' +
+							'<i class="fa fa-ban fa-stack-1x text-danger"></i>' +
+							'</span>' +
+
+							'<span class="fa-stack fa-lg admin-action-btn ' + unbanHidden + '" +  data-admin-action="unblock_image" data-id="' + image._id + '">' +
+							'<i class="fa fa-square-o fa-stack-2x text-success"></i>' +
+							'<i class="fa fa-play fa-stack-1x text-success"></i>' +
+							'</span>' +
+
+							'</td>' +
+
+							'</tr>';
+						html += row;
+					});
+				}
+			})
+				.done(function () {
+					$('#img-table tbody').append(html);
+					cb();
+				});
+		},
+		updateImage: function (id, block, toShow, toHide) {
+			var item = _.find(mainImages, {'_id': id});
+			item.blocked = block;
+			$.ajax({
+				method: 'PUT',
+				url: apiUrl + id,
+				data: JSON.stringify(item),
+				contentType: "application/json; charset=utf-8"
+			})
+				.done(function () {
+					$(toShow).removeClass('toShow');
+					$(toHide).addClass('toShow');
+					showNotifcation('success', 'Image successfully updated');
+				})
+				.fail(function (e) {
+					showNotifcation('error', 'Could not update image');
+
+				});
+			//FIXME ajax call here
 		}
-	}
+	};
 }
 //</editor-fold>
 
@@ -187,56 +322,6 @@ function authenticationHandler() {
 //</editor-fold>
 
 //<editor-fold desc="functions">
-function createUSers(cb) {
-	var apiUrl = getBase('api') + 'users/',
-		html = '';
-
-	$.get(apiUrl, function (data) {
-		if (data) {
-			$.each(data, function (index, user) {
-				var banHidden = '',
-					unbanHidden = '';
-				if (user.accessFlag >= 0) {
-					unbanHidden = 'toShow';
-				} else {
-					banHidden = 'toShow';
-				}
-
-				var row =
-					'<tr>' +
-
-					'<td>' +
-					user.firstName +
-					'</td>' +
-					'<td>' +
-					user.lastName +
-					'</td>' +
-					'<td>' +
-					user.email +
-					'</td>' +
-					'<td data-id="user._id">' +
-
-					'<span class="fa-stack fa-lg admin-action-btn ' + banHidden + '" + data-admin-action="ban-user">' +
-					'<i class="fa fa-square-o fa-stack-2x text-danger"></i>' +
-					'<i class="fa fa-ban fa-stack-1x text-danger"></i>' +
-					'</span>' +
-
-					'<span class="fa-stack fa-lg admin-action-btn ' + unbanHidden + '" +  data-admin-action="unban-user">' +
-					'<i class="fa fa-square-o fa-stack-2x text-success"></i>' +
-					'<i class="fa fa-play fa-stack-1x text-success"></i>' +
-					'</span>' +
-
-					'</td>' +
-
-					'</tr>';
-				html += row;
-			});
-			$('#user-table tbody').append(html);
-			cb();
-		}
-	});
-}
-
 function setMenuListeners() {
 	$('.admin-menu-item').on('click', function (e) {
 		e.preventDefault();
@@ -257,17 +342,41 @@ function setAdminListeners() {
 	$('#user-table').on('click', '.admin-action-btn', function () {
 		alert('TODO ADD HANDLER');
 	})
+
+	$('#img-table').on('click', '.admin-action-btn', function () {
+		var action = this.dataset.adminAction,
+			id = $(this).data('id'),
+			block = false,
+			elToShow = '';
+		switch (action) {
+			case 'block_image':
+				block = true;
+				elToShow = $(this).parent().find('[data-admin-action="unblock_image"]');
+				break;
+			case 'unblock_image':
+				elToShow = $(this).parent().find('[data-admin-action="block_image"]');
+		}
+		photoBoothMgr().updateImage(id, block, elToShow, $(this));
+	})
 }
 
 function initContent(contentId) {
-	var contentPane = $('#' + contentId);
+
+	var contentPane = $('#' + contentId),
+		initiated = !contentPane.hasClass('init');
 	switch (contentId) {
 		case 'user-mgr':
-			if (contentPane.hasClass('init')) {
+			if (!initiated) {
 				userManager().init();
-				contentPane.removeClass('init');
 			}
+			break;
+		case 'img-mgr':
+			if (!initiated) {
+				photoBoothMgr().init();
+			}
+			break;
 	}
+	contentPane.removeClass('init');
 }
 //</editor-fold>
 

@@ -60,10 +60,10 @@ function createNotification(type, msg, id) {
 	var notifResult = '';
 	switch (type) {
 		case 'success':
-			notifResult = '<div id="{{id}}" class="notif alert-success">{{msg}}<i class="fa fa-times pull-right"></i></div>';
+			notifResult = '<div id="{{id}}" class="notif alert-success">{{msg}}<div class="notif-close"><i class="fa fa-times"></i></div></div>';
 			break;
 		case 'error':
-			notifResult = '<div id="{{id}}" class="notif alert-danger">{{msg}}<i class="fa fa-times pull-right"></i></div>';
+			notifResult = '<div id="{{id}}" class="notif alert-danger">{{msg}}<div class="notif-close"><i class="fa fa-times"></i></div></div>';
 			break;
 		default:
 			break;

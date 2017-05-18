@@ -51,6 +51,7 @@
 	<link rel="stylesheet" href="css/html5reset.css">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
 		  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
 	<link rel="stylesheet" href="lib/justifiedGallery/justifiedGallery.min.css">
 	
 	<link rel="stylesheet" href="css/main.css">
@@ -59,6 +60,9 @@
 	<link rel="stylesheet" href="css/forms.css">
 	<link rel="stylesheet" href="css/utils.css">
 	<link rel="stylesheet" href="css/photobooth.css">
+	
+	
+	<link rel="stylesheet" href="lib/colorbox-master/colorbox.css">
 	<!--</editor-fold>-->
 </head>
 
@@ -317,7 +321,7 @@
 		<i class="fa fa-window-close"></i>
 	</div>
 </div>
-<div id="photobooth" class="col-md-6 col-md-offset-3 content-box scrollBox">
+<div id="photobooth" class="col-md-6 col-md-offset-3 content-box scrollBox init">
 	<!--<editor-fold desc="photobooth controls">-->
 	<div id="photoBooth-controls" class="">
 		
@@ -341,8 +345,12 @@
 	
 	</div>
 	
-	<div id="image-loader" class="toShow">
-		<i class="fa fa-refresh fa-spin"></i>
+	<div id="image-loader" class="loader-sm toShow">
+		<i class="fa fa-refresh fa-spin fa-lg"></i>
+	</div>
+	
+	<div id="images-depleted" class="toShow">
+		<p class="alert alert-warning text-center ">Er zijn geen nieuwe foto's meer</p>
 	</div>
 	<!--</editor-fold>-->
 </div>
@@ -389,6 +397,7 @@
 <script src="lib/nicescroll/jquery.nicescroll.min.js"></script>
 <script src="lib/ejs/ejs_production.js"></script>
 <script src="lib/cookie/js.cookie.js"></script>
+<script src="lib/colorbox-master/jquery.colorbox-min.js"></script>
 <script src="lib/justifiedGallery/jquery.justifiedGallery.min.js"></script>
 
 <!--</editor-fold>-->

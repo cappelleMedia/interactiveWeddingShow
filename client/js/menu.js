@@ -39,12 +39,12 @@ function setMenuListeners() {
 			hashLocation = window.location.hash.split('#')[1];
 		}
 		//fixme remove this
-		if(hashLocation == 'pb-access') {
+		if (hashLocation == 'pb-access') {
 			setCookie('pb-access', true);
 		}
 		if (hashLocation == 'home') {
 			var popups = $('#popups .popup');
-			_.each(popups, function(popup) {
+			_.each(popups, function (popup) {
 				$('#' + popup.id + ' .close-btn').click();
 			});
 			var activeMenu = document.getElementsByClassName('menu-item active')[0];
@@ -59,7 +59,7 @@ function setMenuListeners() {
 }
 
 function toggleSubMenu(el) {
-	if(!el) {
+	if (!el) {
 		return;
 	}
 	var activeContent = $('.info-content.active')[0];
@@ -76,7 +76,7 @@ function toggleSubMenu(el) {
 }
 
 function toggleMenu(el) {
-	if(!el) {
+	if (!el) {
 		return;
 	}
 	var jqEl = $(el);
@@ -114,8 +114,11 @@ function triggerInit(target) {
 	switch (target) {
 		case 'photobooth':
 			//fixme remove this
-			if(getCookie('pb-access')){
-			return photoBooth().init();
+			if (getCookie('pb-access')) {
+				if ($('#' + target).hasClass('init')) {
+					$('#' + target).removeClass('init');
+					return photoBooth().init();
+				}
 			}
 			return;
 		default:

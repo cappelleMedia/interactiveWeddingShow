@@ -49,8 +49,16 @@ module.exports = function (app, base, Controller) {
 
 	});
 
-	app.put(base + '/:id', function(req, res){
-		// see delete for method of auth en delete
+	app.put(base + '/:id', function (req, res) {
+		if (!req.params.id || !isValidObjId(req.params.id)) {
+			//TO HELP DEVELOPERS DEBUG
+			helper.respond(null, 500, res, {'dev': '/' + req.params.id + '/' + ' is not a valid id'});
+		}
+		else {
+			Controller.updateObj(req.params.id, req.body, function (err, response, validationResult) {
+				helper.respond(err, response, res, validationResult);
+			});
+		}
 	});
 
 	function isValidObjId(id) {

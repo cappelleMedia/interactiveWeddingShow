@@ -15,13 +15,31 @@ class PhotoController extends BaseController {
 		super(model);
 	}
 
+	getAllowed(limit, skip, callback) {
+		this.model
+			.find({'blocked': false})
+			.skip(skip)
+			.limit(limit)
+			.exec(function (err, objects) {
+				if (err) {
+					callback(err, 500);
+				} else {
+					if (!objects || !objects.length) {
+						callback(err, 404);
+					} else {
+						callback(err, objects);
+					}
+				}
+			});
+	}
+
 	uploadPic(formData, callback) {
 		let errors = '',
 			form = new formidable.IncomingForm(),
 			toSchema = {
 				poster: '',
 				url: '',
-				description: ''
+				description: '',
 			},
 			self = this;
 		form.uploadDir = path.join(config.basepaths.root, 'client', config.basepaths.img);
@@ -47,7 +65,7 @@ class PhotoController extends BaseController {
 			if (file.size <= 0) {
 				errors = 'File empty';
 			}
-			if (file.size > 4000000) {
+			if (file.size > 10000000) {
 				errors = 'File to large';
 			}
 			if (errors) {
@@ -70,6 +88,7 @@ class PhotoController extends BaseController {
 		form.parse(formData, function (err, fields, files) {
 			toSchema.poster = fields.uploader;
 			toSchema.description = fields.description;
+			// toSchema.posted = fields.date;
 			self.addObj(toSchema, callback);
 		});
 

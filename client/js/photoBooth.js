@@ -1,12 +1,30 @@
 function photoBooth() {
 	var photoBoothInfoId = 'photoBoothInfo',
 		validFiles = [],
-		spinnerTO;
+		mainImages = [],
+		selfAdd = [],
+		adding = false,
+		depleted = false,
+		spinnerTO,
+		gallery;
 	return {
 		init: function () {
 			checkFirstTime();
 			setListeners();
-			loadPics('init');
+			loadPics();
+		},
+		createImage: function (image) {
+			var baseImgUrl = 'assets/images/photobooth/',
+				url = baseImgUrl + image.url,
+				caption = image.description + ' - ' + image.poster,
+				imgEl =
+					'<a href="' + url + '">' +
+					'<img alt="' + caption + '" src="' + url + '"/>' +
+					'</a>';
+			return imgEl;
+		},
+		updateGallery: function () {
+
 		}
 	};
 
@@ -62,6 +80,7 @@ function photoBooth() {
 		});
 		$('#popups').on('change', '#pb-upload-file', function (e) {
 			e.preventDefault();
+			$('#photo-form-errors').hide();
 			var tmpPath = '';
 			validFiles = [];
 			$('#pb-upload-preview img').attr('src', '');
@@ -72,19 +91,26 @@ function photoBooth() {
 						setUploadError('Je mag enkel foto\'s uploaden');
 						return false;
 					}
-					if (file.size > 4000000) {
-						setUploadError('');
+					if (file.size > 10000000) {
+						setUploadError('Jou foto is te groot :(');
 					} else {
 						validFiles.push(file);
 					}
 				});
-				if (validFiles) {
+				if (validFiles && validFiles.length) {
 					tmpPath = URL.createObjectURL(e.target.files[0]);
 					$('#pb-upload-preview img').attr('src', tmpPath);
 				}
 				toggleUploadLoading(false);
-				$('#photo-form-errors').hide();
 				spinnerTO = null;
+			}
+		});
+
+		$('#photobooth').on('scroll', function (e) {
+			var scroll = $(this).scrollTop();
+			var height = $(this).height();
+			if (height - scroll <= 450 && !adding && !depleted) {
+				loadPics();
 			}
 		});
 	}
@@ -151,7 +177,7 @@ function photoBooth() {
 				.done(function (data) {
 					$('#photoBoothUpload .close-btn').click();
 					showNotifcation('success', 'Upload gelukt!');
-
+					addPic(data);
 				})
 				.fail(function (e) {
 					showNotifcation('error', 'Er ging iets mis bij het uploaden :(');
@@ -165,33 +191,82 @@ function photoBooth() {
 	//</editor-fold>µ
 
 	//<editor-fold desc="images">
-	function loadPics(offset) {
+	function loadPics() {
+		adding = true;
 		$('#image-loader').show();
-		var apiUrl = getBase('api') + 'photos/',
-			baseImgUrl = 'assets/images/photobooth/',
-			html = '';
+		var apiUrl = getBase('api') + 'photos/allowed/:limit/:skip',
+			skip = mainImages.length || 0,
+			limit = $(window).height() > 600 ? 10 : 10,
+			html = '',
+			self = photoBooth();
+
+		apiUrl = apiUrl.replace(':limit', limit);
+		apiUrl = apiUrl.replace(':skip', skip);
 
 		$.get(apiUrl, function (data) {
 			if (data) {
 				$.each(data, function (index, image) {
-					var url = baseImgUrl + image.url,
-						caption = image.description + ' - ' + image.poster;
-					var imgEl =
-						'<a href="'+ url +'">' +
-						'<img alt="'+ caption +'" src="'+ url +'"/>' +
-						'</a>';
-					html += imgEl;
+					var alreadyAdded = function () {
+						var inMain = _.find(mainImages, image),
+							inSelf = _.find(selfAdd, image);
+						return inMain || inSelf;
+					};
+					if (!alreadyAdded()) {
+						var imgEl = self.createImage(image);
+						mainImages.push(image);
+						html += imgEl;
+					}
 				});
+				$('#photoBoothGallery').append(html);
 			}
-
-			$('#photoBoothGallery').html(html);
-			$('#image-loader').hide();
-			initGallery();
-		});
+		})
+			.done(function () {
+				if (gallery) {
+					updateGallery();
+				} else {
+					initGallery();
+				}
+			})
+			.fail(function() {
+				depleted = true;
+				$('#images-depleted').show();
+			})
+			.always(function () {
+				$('#image-loader').hide();
+				adding = false;
+			});
 	}
 
 	function initGallery() {
-		$('#photoBoothGallery').justifiedGallery();
+		gallery = $('#photoBoothGallery').justifiedGallery({
+			rowHeight: 200,
+			maxRowHeight: 200,
+			lastRow: 'justify',
+			margins: 3,
+			rel: 'photobooth'
+		}).on('jg.complete', function () {
+			$(this).find('a').colorbox({
+				maxWidth: '80%',
+				maxHeight: '80%',
+				opacity: 0.8,
+				transition: 'elastic',
+				current: ''
+			})
+		});
+	}
+
+	function updateGallery() {
+		$('#photoBoothGallery').justifiedGallery('norewind');
+	}
+
+	function addPic(image) {
+		debugger;
+		if (image) {
+			var imgEl = photoBooth().createImage(image);
+			$('#photoBoothGallery').append(imgEl);
+			selfAdd.push(image);
+			updateGallery();
+		}
 	}
 
 	//</editor-fold>
