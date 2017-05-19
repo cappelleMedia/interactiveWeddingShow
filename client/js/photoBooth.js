@@ -260,7 +260,6 @@ function photoBooth() {
 	}
 
 	function addPic(image) {
-		debugger;
 		if (image) {
 			var imgEl = photoBooth().createImage(image);
 			$('#photoBoothGallery').append(imgEl);

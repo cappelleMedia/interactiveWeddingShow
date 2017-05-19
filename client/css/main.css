@@ -8,6 +8,9 @@ blue = rgb(176,222,231) || #b0dee7*/
 /*
     STYLES
 */
+* {
+    outline: none;
+}
 html {
     height: 100%;
 }

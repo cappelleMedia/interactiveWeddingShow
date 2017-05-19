@@ -41,8 +41,9 @@ class PhotoController extends BaseController {
 				url: '',
 				description: '',
 			},
-			self = this;
-		form.uploadDir = path.join(config.basepaths.root, 'client', config.basepaths.img);
+			self = this,
+			pathFix = path.join( config.basepaths.root, 'client', config.basepaths.img);
+		form.uploadDir = pathFix;
 
 		form.onPart = function (part) {
 			if (part.name === 'photo') {
