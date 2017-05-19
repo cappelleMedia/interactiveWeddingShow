@@ -45,6 +45,10 @@
     background-color: #B9FFE5;
 }
 
+#guestbook-menu.active .menu-text{
+    color: #000;
+}
+
 .menu-close {
     display: none;
     position: absolute;

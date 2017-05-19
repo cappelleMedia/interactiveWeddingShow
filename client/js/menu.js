@@ -113,13 +113,16 @@ function showMenuContent(target) {
 function triggerInit(target) {
 	switch (target) {
 		case 'photobooth':
-			//fixme remove this
-			// if (getCookie('pb-access')) {
 			if ($('#' + target).hasClass('init')) {
 				$('#' + target).removeClass('init');
 				return photoBooth().init();
 			}
-			// }
+			return;
+		case 'guestbook':
+			if ($('#' + target).hasClass('init')) {
+				$('#' + target).removeClass('init');
+				return guestBook().init();
+			}
 			return;
 		default:
 			return;

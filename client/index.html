@@ -60,6 +60,7 @@
 	<link rel="stylesheet" href="css/forms.css">
 	<link rel="stylesheet" href="css/utils.css">
 	<link rel="stylesheet" href="css/photobooth.css">
+	<link rel="stylesheet" href="css/guestbook.css">
 	
 	
 	<link rel="stylesheet" href="lib/colorbox-master/colorbox.css">
@@ -365,8 +366,33 @@
 		<i class="fa fa-window-close"></i>
 	</div>
 </div>
-<div id="guestbook" class="col-md-6 col-md-offset-3 content-box scrollBox">
-	Will be revealed on W-day!
+<div id="guestbook" class="col-md-6 col-md-offset-3 content-box scrollBox init">
+	<!--<editor-fold desc="photobooth controls">-->
+	<div id="gb-controls" class="">
+		<a href="" class="fa-stack fa-lg upload-gb-trigger">
+			<i class="fa fa-circle fa-stack-2x"></i>
+			<i class="fa fa-address-book fa-stack-1x"></i>
+		</a>
+		<a href="" class="fa-stack fa-lg gb-info-trigger">
+			<i class="fa fa-circle fa-stack-2x"></i>
+			<i class="fa fa-question fa-stack-1x"></i>
+		</a>
+	</div>
+	<!--</editor-fold>-->
+	
+	<!--<editor-fold desc="gallery">-->
+	<div id="gb-posts" class="">
+	
+	</div>
+	
+	<div id="gb-loader" class="loader-sm toShow">
+		<i class="fa fa-refresh fa-spin fa-lg"></i>
+	</div>
+	
+	<div id="gb-depleted" class="toShow">
+		<p class="alert alert-warning text-center ">Er zijn geen nieuwe gastenboek posts meer</p>
+	</div>
+	<!--</editor-fold>-->
 </div>
 <!--</editor-fold>-->
 
@@ -406,6 +432,7 @@
 <script src="js/forms.js"></script>
 <script src="js/countdown.js"></script>
 <script src="js/photoBooth.js"></script>
+<script src="js/guestposts.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/main.js"></script>
 <!--</editor-fold>-->

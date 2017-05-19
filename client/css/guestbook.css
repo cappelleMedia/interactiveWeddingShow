@@ -1,0 +1,42 @@
+
+#gb-controls a .fa-stack-1x {
+    color: #B9FFE5;
+}
+
+#gb-controls a .fa-stack-2x {
+    color: #000;
+}
+
+#gb-controls a:hover .fa-stack-2x {
+    opacity: .5;
+}
+
+#gbInfo li:first-child {
+    border-top: 1px solid rgba(112, 167, 220, .3);
+}
+
+#gbInfo li{
+    padding: 10px;
+    border-bottom: 1px solid rgba(112, 167, 220, .3);
+}
+
+#gb-posts {
+    margin-top: 20px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.gb-post {
+    width: 80%;
+    background-color: #fff;
+    border: solid 1px #fff;
+    border-radius: 5%;
+    padding: 10px;
+    margin: 10px auto;
+}
+
+.gb-msg {
+    font-size: 18px;
+}
+.gb-name {
+    text-align: right;
+}

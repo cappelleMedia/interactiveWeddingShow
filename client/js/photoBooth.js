@@ -193,7 +193,7 @@ function photoBooth() {
 		$('#image-loader').show();
 		var apiUrl = getBase('api') + 'photos/allowed/:limit/:skip',
 			skip = mainImages.length || 0,
-			limit = $(window).height() > 600 ? 10 : 10,
+			limit = $(window).height() > 600 ? 10 : 50,
 			html = '',
 			self = photoBooth();
 
