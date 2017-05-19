@@ -1,14 +1,30 @@
 body {
     height: 100%;
+    background-color: #CC8DA6;
     /*background-color: black;*/
 }
 
 #image-slider {
-    height: 50%;
+    width: 100%;
+    overflow: hidden;
     /*background-color: #70a7dc;*/
+    background-color: rgba(0, 0, 0, .1);
+}
+
+#image-slider img {
+    margin: 0 auto;
+}
+
+.img-caption {
+    height: 40px;
+    color: #fff;
+    line-height: 40px;
+    font-size: 18px;
+    text-align: center;
+
+
 }
 
 #gb-slider {
-    height: 50%;
-    /*background-color: #70dca5;*/
+
 }
