@@ -26,5 +26,26 @@ body {
 }
 
 #gb-slider {
+    font-family: 'Oswald', sans-serif;
+    width: 400px;
+    margin: 0 auto;
+}
 
+#gb-posts {
+
+}
+
+.gb-post {
+    background-color: #fff;
+    border: solid 1px #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px auto;
+}
+
+.gb-msg {
+    font-size: 18px;
+}
+.gb-name {
+    text-align: right;
 }

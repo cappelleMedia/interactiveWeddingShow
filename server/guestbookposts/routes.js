@@ -19,6 +19,12 @@ module.exports = function (app, base) {
 		});
 	});
 
+	app.get(base + '/notAllowed/:limit/:skip?', function (req, res) {
+		controller.getNotAllowed(parseInt(req.params.limit), parseInt(req.params.skip), function (err, response, errors) {
+			helper.respond(err, response, res, errors);
+		});
+	});
+
 	//BASE ROUTES
 	require('../util/bases/baserouter')(app, base, controller);
 };

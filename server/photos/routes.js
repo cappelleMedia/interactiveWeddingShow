@@ -20,6 +20,12 @@ module.exports = function (app, base) {
 		});
 	});
 
+	app.get(base + '/notAllowed/:limit/:skip?', function (req, res) {
+		controller.getNotAllowed(parseInt(req.params.limit), parseInt(req.params.skip), function (err, response, errors) {
+			helper.respond(err, response, res, errors);
+		});
+	});
+
 	app.post(base, function (req, res) {
 		if (req.headers['content-type'].indexOf('multipart/form-data') !== 0) {
 			helper.respond('Not a multipart form', 500, res, 'Not a multipart form');

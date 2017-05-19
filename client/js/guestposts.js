@@ -114,7 +114,7 @@ function guestBook() {
 
 	//<editor-fold desc="gbps">
 	function loadGb() {
-		adding = true;
+			adding = true;
 		$('#gb-loader').show();
 		var apiUrl = getBase('api') + 'gbps/allowed/:limit/:skip',
 			skip = mainGPs.length || 0,

@@ -44,6 +44,24 @@ class PhotoController extends BaseController {
 			});
 	}
 
+	getNotAllowed(limit, skip, callback) {
+		this.model
+			.find({'blocked': true})
+			.skip(skip)
+			.limit(limit)
+			.exec(function (err, objects) {
+				if (err) {
+					callback(err, 500);
+				} else {
+					if (!objects || !objects.length) {
+						callback(err, 404);
+					} else {
+						callback(err, objects);
+					}
+				}
+			});
+	}
+
 	uploadPic(formData, callback) {
 		let errors = '',
 			form = new formidable.IncomingForm(),

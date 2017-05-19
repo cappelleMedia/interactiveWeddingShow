@@ -3,6 +3,7 @@ function photoBooth() {
 		validFiles = [],
 		mainImages = [],
 		selfAdd = [],
+		blocked = [],
 		adding = false,
 		depleted = false,
 		spinnerTO,
@@ -18,7 +19,7 @@ function photoBooth() {
 				url = baseImgUrl + image.url,
 				caption = image.description + ' - ' + image.poster,
 				imgEl =
-					'<a href="' + url + '">' +
+					'<a href="' + url + '" id="' + image._id + '">' +
 					'<img alt="' + caption + '" src="' + url + '"/>' +
 					'</a>';
 			return imgEl;
@@ -188,6 +189,38 @@ function photoBooth() {
 	//</editor-fold>µ
 
 	//<editor-fold desc="images">
+	function removeBlocked() {
+		var apiUrl = getBase('api') + 'photos/notallowed/0/0',
+			self = photoBooth();
+		if (gallery) {
+			$.get(apiUrl, function (data) {
+				if (data) {
+					$.each(data, function (index, image) {
+						var alreadyRemoved = function () {
+							var inBlocked = _.find(blocked, function(imb){ return imb._id == image._id}),
+								inMain = _.find(mainImages, function(imm){return imm._id == image._id});
+							if (inBlocked || !inMain) {
+								return true
+							}
+						};
+						if (!alreadyRemoved()) {
+							blocked.push(image);
+							_.reject(mainImages, function (img) {
+								return img._id === image._id;
+							});
+							var img = $('#' + image._id);
+							img.remove();
+						}
+					});
+				}
+			})
+				.done(function () {
+					updateGallery();
+				})
+		}
+	}
+
+
 	function loadPics() {
 		adding = true;
 		$('#image-loader').show();
@@ -224,7 +257,7 @@ function photoBooth() {
 					initGallery();
 				}
 			})
-			.fail(function() {
+			.fail(function () {
 				depleted = true;
 				$('#images-depleted').show();
 			})
@@ -253,8 +286,9 @@ function photoBooth() {
 	}
 
 	function updateGallery() {
-		if(gallery){
-		$('#photoBoothGallery').justifiedGallery('norewind');
+		if (gallery) {
+			$('#photoBoothGallery').justifiedGallery('norewind');
+			removeBlocked();
 		} else {
 			initGallery();
 		}
