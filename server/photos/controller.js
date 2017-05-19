@@ -9,10 +9,21 @@ const fs = require('fs');
 const BaseController = require('../util/bases/basecontroller');
 const Model = require('./model');
 const _ = require('lodash');
+const Jimp = require('jimp');
 
 class PhotoController extends BaseController {
 	constructor(model = Model) {
 		super(model);
+	}
+
+	noexif(img, cb) {
+		Jimp.read(img, function(err, lenna) {
+			if(!err) {
+				lenna.rotate(0)
+					.write(img);
+			}
+			cb(err)
+		})
 	}
 
 	getAllowed(limit, skip, callback) {
@@ -42,7 +53,7 @@ class PhotoController extends BaseController {
 				description: '',
 			},
 			self = this,
-			pathFix = path.join( config.basepaths.root, 'client', config.basepaths.img);
+			pathFix = path.join(config.basepaths.root, 'client', config.basepaths.img);
 		form.uploadDir = pathFix;
 
 		form.onPart = function (part) {
@@ -73,11 +84,24 @@ class PhotoController extends BaseController {
 				form.emit('error', new Error(errors));
 				return;
 			}
-			var pre = '';
+
+			let pre = '';
 			if (fs.existsSync(form.uploadDir + "/" + file.name)) {
 				pre = new Date().getTime();
 			}
-			var name = fs.rename(file.path, form.uploadDir + "/" + pre + file.name);
+
+			let name = fs.rename(file.path, form.uploadDir + "/" + pre + file.name);
+
+			if (file.type === 'image/jpeg') {
+				self.noexif(form.uploadDir + "/" + pre + file.name, function (err) {
+					if (err) {
+						var e = err;
+						form.emit('error', new Error('Could not convert image'));
+						return;
+					}
+				});
+			}
+
 			toSchema.url = pre + file.name;
 		});
 
@@ -89,7 +113,6 @@ class PhotoController extends BaseController {
 		form.parse(formData, function (err, fields, files) {
 			toSchema.poster = fields.uploader;
 			toSchema.description = fields.description;
-			// toSchema.posted = fields.date;
 			self.addObj(toSchema, callback);
 		});
 

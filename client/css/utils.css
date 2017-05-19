@@ -121,7 +121,7 @@
     width: 100%;
     background-color: rgba(0,0,0,0.8);
     position: fixed;
-    z-index: 999;
+    z-index: 99999;
 }
 #loading i {
     color: #FFF;

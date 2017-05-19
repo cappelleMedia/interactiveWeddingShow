@@ -22,9 +22,6 @@ function photoBooth() {
 					'<img alt="' + caption + '" src="' + url + '"/>' +
 					'</a>';
 			return imgEl;
-		},
-		updateGallery: function () {
-
 		}
 	};
 
@@ -256,7 +253,11 @@ function photoBooth() {
 	}
 
 	function updateGallery() {
+		if(gallery){
 		$('#photoBoothGallery').justifiedGallery('norewind');
+		} else {
+			initGallery();
+		}
 	}
 
 	function addPic(image) {

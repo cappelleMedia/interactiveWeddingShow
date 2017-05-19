@@ -23,7 +23,7 @@ let GuestBookPostSchema = new mongoose.Schema({
 	posted: {
 		type: Date,
 		required: true,
-		default: Date.now()
+		default: Date.now
 	},
 	blocked: {
 		type: Boolean,
